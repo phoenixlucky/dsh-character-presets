@@ -9,7 +9,7 @@ kind: "package-bundle"
 
 English | [中文](README.zh.md)
 
-This optional bundle adds 12 character presets to a DeepSeek Harness Web profile. Each preset combines a distinct character voice with a primary area of expertise, while remaining useful for other questions. The Moon Lovers characters are adapted from [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill).
+This optional bundle adds 13 character presets to a DeepSeek Harness Web profile. Each preset combines a distinct character voice with a primary area of expertise, while remaining useful for other questions. The Moon Lovers characters are adapted from [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill).
 
 ## Contents
 
@@ -47,8 +47,9 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 | Zhuge Liang · Longzhong Research | <img src="assets/preset-icons/zhuge-liang-market-research.webp" width="64" alt="Zhuge Liang"/> | Investigates layer by layer—from industry and customers to competitors and trends—and makes the evidence behind market judgments visible. |
 | Wei Liao · Strategic Planning | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="Wei Liao"/> | Turns goals into paths, resources, milestones, measures, and contingencies, weighing tradeoffs and risks along the way. |
 | Zhang Liang · Cross-Border Trade | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="Zhang Liang"/> | Starts with target markets, platforms, and products, then evaluates unit economics, fulfillment costs, and compliance risks. |
+| Xing Xiaobiao · Cross-Border E-Commerce Analysis | — | Stays on one job, with Home Depot and Lowe's first: pulls your own store, product, and ad data through `query-canvas`, checks platform and market facts on the web, then turns the gap into concrete fixes. |
 
-Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl · Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately.
+Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl · Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately. Xing Xiaobiao reads your own business data through a `query-canvas` MCP and fetches external facts through the `streamable-mcp-server-new` MCP; without those connections it says which data is missing instead of inventing numbers.
 
 The avatars are 512 × 512 WebP icons cropped from a shared character sheet for a consistent illustration style.
 

@@ -9,7 +9,7 @@ kind: "package-bundle"
 
 [English](README.md) | 中文
 
-此可选 bundle 为 DeepSeek Harness Web profile 提供 12 个角色 preset。每个角色都有鲜明的人设风格和主要负责领域，也能正常协助处理领域外的问题。白月光系列角色由 [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill) 中的角色档案改编而来。
+此可选 bundle 为 DeepSeek Harness Web profile 提供 13 个角色 preset。每个角色都有鲜明的人设风格和主要负责领域，也能正常协助处理领域外的问题。白月光系列角色由 [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill) 中的角色档案改编而来。
 
 ## 目录
 
@@ -49,8 +49,9 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 | 诸葛亮 · 隆中调研 | <img src="assets/preset-icons/zhuge-liang-market-research.webp" width="64" alt="诸葛亮"/> | 如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。 |
 | 尉缭 · 经世筹策 | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="尉缭"/> | 把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。 |
 | 张良 · 海贸筹略 | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="张良"/> | 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。 |
+| 星小彪 · 跨境电商分析 | — | 只盯一件事，以 Home Depot、Lowe's 为主：用 `query-canvas` 调取自家店铺、商品与投放数据，上网核实平台与市场事实，再把差距拆成能落地的改法。 |
 
-每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。
+每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。星小彪通过 `query-canvas` MCP 读取自有经营数据，通过 `streamable-mcp-server-new` MCP 核实外部信息；未连接时会说明缺哪些数据，不编造数字。
 
 角色头像为 512 × 512 WebP 格式，均由同一张角色图阵裁切，以保持插画风格统一。
 
