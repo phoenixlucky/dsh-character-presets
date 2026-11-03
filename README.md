@@ -1,5 +1,5 @@
 ---
-description: "An optional Catgirl Financial Assistant preset for DeepSeek Harness Web profiles."
+description: "Character presets with WebP icons for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, and cross-border ecommerce roles."
 kind: "package-bundle"
 ---
 
@@ -7,35 +7,75 @@ kind: "package-bundle"
 
 English | [中文](README.zh.md)
 
-## Summary
+This optional bundle adds 12 character presets to a DeepSeek Harness Web profile. Each preset combines a distinct character voice with a primary area of expertise, while remaining useful for other questions. The Moon Lovers characters are adapted from [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill).
 
-This optional bundle adds the Catgirl Financial Assistant and eight Moon Lovers character presets to a DeepSeek Harness Web profile. The Moon Lovers character profiles are adapted from [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill). Install the local bundle, then choose a character in **Settings → Agent presets**. The Catgirl Financial Assistant uses the Web profile's existing Chrome MCP and `new-gold` connections; configure those services separately. Removing the bundle removes the preset declarations.
-
-## Table of Contents
+## Contents
 
 - [Use this package](#use-this-package)
-- [Understand the implementation](#understand-the-implementation)
-- [Model Experience](#model-experience)
+- [Preset guide](#preset-guide)
+- [Preset icons](#preset-icons)
+- [Implementation notes](#implementation-notes)
 
------
-
-<a id="use-this-package"></a>
 ## Use this package
 
-Install the bundle into the existing Web profile:
+Install the bundle into an existing Web profile:
 
 ```sh
 pnpm dsh plugin --profile web add E:\home\dsh_character_presets
 ```
 
-Open **Settings → Agent presets** and select **Catgirl Financial Assistant** (`maoniang-search`) or one of the Moon Lovers characters: Xishi, Wang Zhaojun, Diaochan, Yang Yuhuan, Pan An, Lanling Wang, Wei Jie, and Song Yu. The Moon Lovers presets are adapted from the [original project](https://github.com/phoenixlucky/moon-lovers-skill). The Catgirl Financial Assistant uses Chrome MCP for public market research and read-only `new-gold` tools for account holdings. Those connections must be available in the Web profile; the preset does not install or configure them.
+Then open **Settings → Agent presets** and select a preset. Remove the bundle with:
 
-Remove it with `pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets`.
+```sh
+pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
+```
 
-## Understand the implementation
+## Preset guide
 
-`cordis.patch.yml` inserts one `@deepseek-ai/dsh-agent-preset` row with the original persona and time-context plugins. It targets a Web profile that already provides the preset registry and the referenced DSH packages.
+| Preset | Primary area |
+| --- | --- |
+| Catgirl Financial Assistant | Finance, investments, and account holdings |
+| Zhuge Liang · Longzhong Research | Industry, customer, competitor, and trend research |
+| Wei Liao · Strategic Planning | Strategy and execution planning |
+| Zhang Liang · Cross-Border Trade | Cross-border ecommerce analysis |
+| Xishi · Streamside Reflection | Emotional support and relationship communication |
+| Wang Zhaojun · Frontier Moon | Life planning and goal management |
+| Diaochan · Moonlit Grace | Communication and social situations |
+| Yang Yuhuan · Spring Warmth | Food inspiration and everyday life |
+| Pan An · Refined Elegance | Classical culture |
+| Lanling Wang · Beneath the Mask | Workplace decisions |
+| Wei Jie · Jade-like Clarity | Learning and knowledge organization |
+| Song Yu · Gifted Rhetoric | Writing and rhetoric |
 
-## Model Experience
+Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately.
 
-The preset adds its research instructions to each selected Agent's persona. It does not add tools; Chrome MCP and `new-gold` provide the tools when configured.
+## Preset icons
+
+The package includes 512 × 512 WebP icons cropped from a shared character sheet for a consistent illustration style.
+
+<table>
+<tr>
+<td align="center"><img src="assets/preset-icons/maoniang-search.webp" width="112" alt="Catgirl Financial Assistant"/><br/>Catgirl Financial Assistant</td>
+<td align="center"><img src="assets/preset-icons/zhuge-liang-market-research.webp" width="112" alt="Zhuge Liang"/><br/>Zhuge Liang</td>
+<td align="center"><img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="112" alt="Wei Liao"/><br/>Wei Liao</td>
+<td align="center"><img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="112" alt="Zhang Liang"/><br/>Zhang Liang</td>
+</tr>
+<tr>
+<td align="center"><img src="assets/preset-icons/moon-lovers-xishi.webp" width="112" alt="Xishi"/><br/>Xishi</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="112" alt="Wang Zhaojun"/><br/>Wang Zhaojun</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-diaochan.webp" width="112" alt="Diaochan"/><br/>Diaochan</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-yang-yuhuan.webp" width="112" alt="Yang Yuhuan"/><br/>Yang Yuhuan</td>
+</tr>
+<tr>
+<td align="center"><img src="assets/preset-icons/moon-lovers-pan-an.webp" width="112" alt="Pan An"/><br/>Pan An</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-lanling-wang.webp" width="112" alt="Lanling Wang"/><br/>Lanling Wang</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-wei-jie.webp" width="112" alt="Wei Jie"/><br/>Wei Jie</td>
+<td align="center"><img src="assets/preset-icons/moon-lovers-song-yu.webp" width="112" alt="Song Yu"/><br/>Song Yu</td>
+</tr>
+</table>
+
+## Implementation notes
+
+- `cordis.patch.yml` registers the presets with `@deepseek-ai/dsh-agent-preset` and supplies persona and time-context instructions.
+- The target Web profile must already provide the preset registry and the referenced DSH packages.
+- This bundle does not install or configure browser, research, or account connections. Tools are available only when the Web profile has them configured.
