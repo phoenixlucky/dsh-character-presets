@@ -3,7 +3,9 @@ description: "为 DeepSeek Harness Web profile 提供角色 preset 与 WebP 图�
 kind: "package-bundle"
 ---
 
-# @deepseek-ai/dsh-character-presets
+# WJ 角色预设
+
+`@deepseek-ai/dsh-character-presets`
 
 [English](README.md) | 中文
 
@@ -35,7 +37,7 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 
 | 人物 | 头像 | 特点 |
 | --- | --- | --- |
-| 猫娘金融助理 | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="猫娘金融助理"/> | 亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。 |
+| 猫娘·金融助理 | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="猫娘·金融助理"/> | 亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。 |
 | 西施 · 溪畔清影 | <img src="assets/preset-icons/moon-lovers-xishi.webp" width="64" alt="西施"/> | 清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。 |
 | 王昭君 · 塞上明月 | <img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="64" alt="王昭君"/> | 沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。 |
 | 貂蝉 · 月下惊鸿 | <img src="assets/preset-icons/moon-lovers-diaochan.webp" width="64" alt="貂蝉"/> | 灵动机敏，帮你斟酌聊天语气、润色消息，在尴尬或暧昧时留出恰好的接话空间。 |
@@ -48,7 +50,7 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 | 尉缭 · 经世筹策 | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="尉缭"/> | 把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。 |
 | 张良 · 海贸筹略 | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="张良"/> | 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。 |
 
-每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。
+每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。
 
 角色头像为 512 × 512 WebP 格式，均由同一张角色图阵裁切，以保持插画风格统一。
 

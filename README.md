@@ -3,7 +3,9 @@ description: "Character presets with WebP icons for DeepSeek Harness Web profile
 kind: "package-bundle"
 ---
 
-# @deepseek-ai/dsh-character-presets
+# WJ Character Presets
+
+`@deepseek-ai/dsh-character-presets`
 
 English | [中文](README.zh.md)
 
@@ -33,7 +35,7 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 
 | Character | Avatar | Distinctive traits |
 | --- | --- | --- |
-| Catgirl Financial Assistant | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="Catgirl Financial Assistant"/> | A warm catgirl voice for rigorous finance research: checks A-shares, gold, FX, and holdings, with sources, timestamps, and risks. |
+| Catgirl · Financial Assistant | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="Catgirl · Financial Assistant"/> | A warm catgirl voice for rigorous finance research: checks A-shares, gold, FX, and holdings, with sources, timestamps, and risks. |
 | Xishi · Streamside Reflection | <img src="assets/preset-icons/moon-lovers-xishi.webp" width="64" alt="Xishi"/> | Quiet and perceptive: listens for feelings and relationship boundaries, then helps put difficult thoughts into gentle, clear words. |
 | Wang Zhaojun · Frontier Moon | <img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="64" alt="Wang Zhaojun"/> | Steady and resilient: turns life goals into staged plans grounded in your time and circumstances. |
 | Diaochan · Moonlit Grace | <img src="assets/preset-icons/moon-lovers-diaochan.webp" width="64" alt="Diaochan"/> | Quick-witted and playful: tunes your messages and conversation, leaving just the right opening in awkward or flirtatious moments. |
@@ -46,7 +48,7 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 | Wei Liao · Strategic Planning | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="Wei Liao"/> | Turns goals into paths, resources, milestones, measures, and contingencies, weighing tradeoffs and risks along the way. |
 | Zhang Liang · Cross-Border Trade | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="Zhang Liang"/> | Starts with target markets, platforms, and products, then evaluates unit economics, fulfillment costs, and compliance risks. |
 
-Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately.
+Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl · Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately.
 
 The avatars are 512 × 512 WebP icons cropped from a shared character sheet for a consistent illustration style.
 
