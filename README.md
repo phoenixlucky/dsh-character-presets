@@ -13,7 +13,6 @@ This optional bundle adds 12 character presets to a DeepSeek Harness Web profile
 
 - [Use this package](#use-this-package)
 - [Preset guide](#preset-guide)
-- [Preset icons](#preset-icons)
 - [Implementation notes](#implementation-notes)
 
 ## Use this package
@@ -32,47 +31,24 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 
 ## Preset guide
 
-| Preset | Primary area |
-| --- | --- |
-| Catgirl Financial Assistant | Finance, investments, and account holdings |
-| Zhuge Liang · Longzhong Research | Industry, customer, competitor, and trend research |
-| Wei Liao · Strategic Planning | Strategy and execution planning |
-| Zhang Liang · Cross-Border Trade | Cross-border ecommerce analysis |
-| Xishi · Streamside Reflection | Emotional support and relationship communication |
-| Wang Zhaojun · Frontier Moon | Life planning and goal management |
-| Diaochan · Moonlit Grace | Communication and social situations |
-| Yang Yuhuan · Spring Warmth | Food inspiration and everyday life |
-| Pan An · Refined Elegance | Classical culture |
-| Lanling Wang · Beneath the Mask | Workplace decisions |
-| Wei Jie · Jade-like Clarity | Learning and knowledge organization |
-| Song Yu · Gifted Rhetoric | Writing and rhetoric |
+| Character | Avatar | Distinctive traits |
+| --- | --- | --- |
+| Catgirl Financial Assistant | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="Catgirl Financial Assistant"/> | A warm catgirl voice for rigorous finance research: checks A-shares, gold, FX, and holdings, with sources, timestamps, and risks. |
+| Xishi · Streamside Reflection | <img src="assets/preset-icons/moon-lovers-xishi.webp" width="64" alt="Xishi"/> | Quiet and perceptive: listens for feelings and relationship boundaries, then helps put difficult thoughts into gentle, clear words. |
+| Wang Zhaojun · Frontier Moon | <img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="64" alt="Wang Zhaojun"/> | Steady and resilient: turns life goals into staged plans grounded in your time and circumstances. |
+| Diaochan · Moonlit Grace | <img src="assets/preset-icons/moon-lovers-diaochan.webp" width="64" alt="Diaochan"/> | Quick-witted and playful: tunes your messages and conversation, leaving just the right opening in awkward or flirtatious moments. |
+| Yang Yuhuan · Spring Warmth | <img src="assets/preset-icons/moon-lovers-yang-yuhuan.webp" width="64" alt="Yang Yuhuan"/> | Warm and attentive: plans menus and daily routines around your tastes, ingredients, and situation, remembering the little details. |
+| Pan An · Refined Elegance | <img src="assets/preset-icons/moon-lovers-pan-an.webp" width="64" alt="Pan An"/> | Gentle and sincere: explores classical figures, allusions, and poetry while distinguishing history from legend. |
+| Lanling Wang · Beneath the Mask | <img src="assets/preset-icons/moon-lovers-lanling-wang.webp" width="64" alt="Lanling Wang"/> | Reserved but protective: clarifies workplace goals, risks, and choices, then gives concise, practical next steps. |
+| Wei Jie · Jade-like Clarity | <img src="assets/preset-icons/moon-lovers-wei-jie.webp" width="64" alt="Wei Jie"/> | Calm and gentle: explains difficult ideas step by step and turns material into outlines, exercises, and review plans. |
+| Song Yu · Gifted Rhetoric | <img src="assets/preset-icons/moon-lovers-song-yu.webp" width="64" alt="Song Yu"/> | Witty and literary: drafts and revises for the audience and occasion, keeping the writing expressive and clear. |
+| Zhuge Liang · Longzhong Research | <img src="assets/preset-icons/zhuge-liang-market-research.webp" width="64" alt="Zhuge Liang"/> | Investigates layer by layer—from industry and customers to competitors and trends—and makes the evidence behind market judgments visible. |
+| Wei Liao · Strategic Planning | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="Wei Liao"/> | Turns goals into paths, resources, milestones, measures, and contingencies, weighing tradeoffs and risks along the way. |
+| Zhang Liang · Cross-Border Trade | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="Zhang Liang"/> | Starts with target markets, platforms, and products, then evaluates unit economics, fulfillment costs, and compliance risks. |
 
 Each preset keeps its own character voice. Research presets use browser or research tools available to the selected Agent. The Catgirl Financial Assistant uses the Web profile's existing Chrome MCP for market research and read-only `new-gold` tools for account holdings; configure these connections separately.
 
-## Preset icons
-
-The package includes 512 × 512 WebP icons cropped from a shared character sheet for a consistent illustration style.
-
-<table>
-<tr>
-<td align="center"><img src="assets/preset-icons/maoniang-search.webp" width="112" alt="Catgirl Financial Assistant"/><br/>Catgirl Financial Assistant</td>
-<td align="center"><img src="assets/preset-icons/zhuge-liang-market-research.webp" width="112" alt="Zhuge Liang"/><br/>Zhuge Liang</td>
-<td align="center"><img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="112" alt="Wei Liao"/><br/>Wei Liao</td>
-<td align="center"><img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="112" alt="Zhang Liang"/><br/>Zhang Liang</td>
-</tr>
-<tr>
-<td align="center"><img src="assets/preset-icons/moon-lovers-xishi.webp" width="112" alt="Xishi"/><br/>Xishi</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="112" alt="Wang Zhaojun"/><br/>Wang Zhaojun</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-diaochan.webp" width="112" alt="Diaochan"/><br/>Diaochan</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-yang-yuhuan.webp" width="112" alt="Yang Yuhuan"/><br/>Yang Yuhuan</td>
-</tr>
-<tr>
-<td align="center"><img src="assets/preset-icons/moon-lovers-pan-an.webp" width="112" alt="Pan An"/><br/>Pan An</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-lanling-wang.webp" width="112" alt="Lanling Wang"/><br/>Lanling Wang</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-wei-jie.webp" width="112" alt="Wei Jie"/><br/>Wei Jie</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-song-yu.webp" width="112" alt="Song Yu"/><br/>Song Yu</td>
-</tr>
-</table>
+The avatars are 512 × 512 WebP icons cropped from a shared character sheet for a consistent illustration style.
 
 ## Implementation notes
 

@@ -13,7 +13,6 @@ kind: "package-bundle"
 
 - [安装与使用](#use-this-package)
 - [角色指南](#preset-guide)
-- [角色图标](#preset-icons)
 - [实现说明](#implementation-notes)
 
 <a id="use-this-package"></a>
@@ -34,48 +33,24 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 <a id="preset-guide"></a>
 ## 角色指南
 
-| 角色 | 主要领域 |
-| --- | --- |
-| 猫娘金融助理 | 金融、投资研究与账户持仓 |
-| 诸葛亮 · 隆中调研 | 行业、客户、竞品与趋势调研 |
-| 尉缭 · 经世筹策 | 战略规划与执行 |
-| 张良 · 海贸筹略 | 跨境电商分析 |
-| 西施 · 溪畔清影 | 情绪支持与亲密关系沟通 |
-| 王昭君 · 塞上明月 | 人生规划与目标管理 |
-| 貂蝉 · 月下惊鸿 | 沟通表达与社交情境 |
-| 杨玉环 · 华清春暖 | 饮食灵感与日常生活 |
-| 潘安 · 掷果盈车 | 古典文化 |
-| 兰陵王 · 面具之下 | 职场与决策 |
-| 卫玠 · 清羸如玉 | 学习与知识整理 |
-| 宋玉 · 才冠楚襄 | 写作与修辞 |
+| 人物 | 头像 | 特点 |
+| --- | --- | --- |
+| 猫娘金融助理 | <img src="assets/preset-icons/maoniang-search.webp" width="64" alt="猫娘金融助理"/> | 亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。 |
+| 西施 · 溪畔清影 | <img src="assets/preset-icons/moon-lovers-xishi.webp" width="64" alt="西施"/> | 清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。 |
+| 王昭君 · 塞上明月 | <img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="64" alt="王昭君"/> | 沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。 |
+| 貂蝉 · 月下惊鸿 | <img src="assets/preset-icons/moon-lovers-diaochan.webp" width="64" alt="貂蝉"/> | 灵动机敏，帮你斟酌聊天语气、润色消息，在尴尬或暧昧时留出恰好的接话空间。 |
+| 杨玉环 · 华清春暖 | <img src="assets/preset-icons/moon-lovers-yang-yuhuan.webp" width="64" alt="杨玉环"/> | 温暖明媚，根据口味、食材和场景搭配菜单与日常安排，也记得你提过的小细节。 |
+| 潘安 · 掷果盈车 | <img src="assets/preset-icons/moon-lovers-pan-an.webp" width="64" alt="潘安"/> | 温润真挚，陪你读懂古人、典故与诗文，分清史实和传说，也把关心落在细节里。 |
+| 兰陵王 · 面具之下 | <img src="assets/preset-icons/moon-lovers-lanling-wang.webp" width="64" alt="兰陵王"/> | 外冷内柔，帮你厘清职场难题的目标、风险与选择，再给出简洁可行的行动步骤。 |
+| 卫玠 · 清羸如玉 | <img src="assets/preset-icons/moon-lovers-wei-jie.webp" width="64" alt="卫玠"/> | 清淡温柔，循序渐进地讲清难懂概念，把资料整理成提纲、练习和复习步骤。 |
+| 宋玉 · 才冠楚襄 | <img src="assets/preset-icons/moon-lovers-song-yu.webp" width="64" alt="宋玉"/> | 风雅机敏，按读者与场景构思、改写和润色文字，让表达有韵味也不失清楚。 |
+| 诸葛亮 · 隆中调研 | <img src="assets/preset-icons/zhuge-liang-market-research.webp" width="64" alt="诸葛亮"/> | 如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。 |
+| 尉缭 · 经世筹策 | <img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="尉缭"/> | 把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。 |
+| 张良 · 海贸筹略 | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="张良"/> | 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。 |
 
 每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。
 
-<a id="preset-icons"></a>
-## 角色图标
-
-随包提供 512 × 512 WebP 格式图标，均由同一张角色图阵裁切，以保持插画风格统一。
-
-<table>
-<tr>
-<td align="center"><img src="assets/preset-icons/maoniang-search.webp" width="112" alt="猫娘金融助理"/><br/>猫娘金融助理</td>
-<td align="center"><img src="assets/preset-icons/zhuge-liang-market-research.webp" width="112" alt="诸葛亮"/><br/>诸葛亮</td>
-<td align="center"><img src="assets/preset-icons/wei-liao-strategy-planning.webp" width="112" alt="尉缭"/><br/>尉缭</td>
-<td align="center"><img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="112" alt="张良"/><br/>张良</td>
-</tr>
-<tr>
-<td align="center"><img src="assets/preset-icons/moon-lovers-xishi.webp" width="112" alt="西施"/><br/>西施</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-wang-zhaojun.webp" width="112" alt="王昭君"/><br/>王昭君</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-diaochan.webp" width="112" alt="貂蝉"/><br/>貂蝉</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-yang-yuhuan.webp" width="112" alt="杨玉环"/><br/>杨玉环</td>
-</tr>
-<tr>
-<td align="center"><img src="assets/preset-icons/moon-lovers-pan-an.webp" width="112" alt="潘安"/><br/>潘安</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-lanling-wang.webp" width="112" alt="兰陵王"/><br/>兰陵王</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-wei-jie.webp" width="112" alt="卫玠"/><br/>卫玠</td>
-<td align="center"><img src="assets/preset-icons/moon-lovers-song-yu.webp" width="112" alt="宋玉"/><br/>宋玉</td>
-</tr>
-</table>
+角色头像为 512 × 512 WebP 格式，均由同一张角色图阵裁切，以保持插画风格统一。
 
 <a id="implementation-notes"></a>
 ## 实现说明
