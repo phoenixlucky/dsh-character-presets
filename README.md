@@ -9,7 +9,7 @@ English | [中文](README.zh.md)
 
 ## Summary
 
-This optional bundle adds the Catgirl Financial Assistant agent preset to a DeepSeek Harness Web profile. Install the local bundle, then select `maoniang-search` in **Settings → Agent presets**. The preset uses the Web profile's existing Chrome MCP and `new-gold` connections; configure those services separately. Removing the bundle removes the preset declaration.
+This optional bundle adds the Catgirl Financial Assistant and eight Moon Lovers character presets to a DeepSeek Harness Web profile. The Moon Lovers character profiles are adapted from [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill). Install the local bundle, then choose a character in **Settings → Agent presets**. The Catgirl Financial Assistant uses the Web profile's existing Chrome MCP and `new-gold` connections; configure those services separately. Removing the bundle removes the preset declarations.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ Install the bundle into the existing Web profile:
 pnpm dsh plugin --profile web add E:\home\dsh_character_presets
 ```
 
-Open **Settings → Agent presets** and select **Catgirl Financial Assistant** (`maoniang-search`). The preset uses Chrome MCP for public market research and read-only `new-gold` tools for account holdings. Those connections must be available in the Web profile; the preset does not install or configure them.
+Open **Settings → Agent presets** and select **Catgirl Financial Assistant** (`maoniang-search`) or one of the Moon Lovers characters: Xishi, Wang Zhaojun, Diaochan, Yang Yuhuan, Pan An, Lanling Wang, Wei Jie, and Song Yu. The Moon Lovers presets are adapted from the [original project](https://github.com/phoenixlucky/moon-lovers-skill). The Catgirl Financial Assistant uses Chrome MCP for public market research and read-only `new-gold` tools for account holdings. Those connections must be available in the Web profile; the preset does not install or configure them.
 
 Remove it with `pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets`.
 

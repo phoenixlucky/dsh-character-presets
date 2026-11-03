@@ -9,7 +9,7 @@ English | [中文](README.zh.md)
 
 ## Summary
 
-此可选 bundle 会为 DeepSeek Harness Web profile 添加“猫娘金融助理” Agent preset。安装本地 bundle 后，在“设置 → Agent 预设”中选择 `maoniang-search`。该 preset 使用 Web profile 已有的 Chrome MCP 与 `new-gold` 连接；这些服务需单独配置。移除 bundle 会同时移除 preset 声明。
+此可选 bundle 会为 DeepSeek Harness Web profile 添加“猫娘金融助理”以及白月光系列 8 个角色 Agent preset。白月光系列角色设定源自 [phoenixlucky/moon-lovers-skill](https://github.com/phoenixlucky/moon-lovers-skill)，本项目将其中角色档案改编为独立 preset。安装本地 bundle 后，在“设置 → Agent 预设”中选择需要的角色。猫娘金融助理使用 Web profile 已有的 Chrome MCP 与 `new-gold` 连接；这些服务需单独配置。移除 bundle 会同时移除 preset 声明。
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ English | [中文](README.zh.md)
 pnpm dsh plugin --profile web add E:\home\dsh_character_presets
 ```
 
-打开“设置 → Agent 预设”，选择“猫娘金融助理”（`maoniang-search`）。该 preset 使用 Chrome MCP 检索公开市场信息，并使用 `new-gold` 只读工具查询账户持仓。这些连接必须已在 Web profile 中可用；preset 不会安装或配置它们。
+打开“设置 → Agent 预设”，选择“猫娘金融助理”（`maoniang-search`）或白月光系列角色：西施、王昭君、貂蝉、杨玉环、潘安、兰陵王、卫玠、宋玉。白月光系列角色预设改编自[原项目](https://github.com/phoenixlucky/moon-lovers-skill)。猫娘金融助理使用 Chrome MCP 检索公开市场信息，并使用 `new-gold` 只读工具查询账户持仓；这些连接必须已在 Web profile 中可用，preset 不会安装或配置它们。
 
 使用 `pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets` 移除它。
 
