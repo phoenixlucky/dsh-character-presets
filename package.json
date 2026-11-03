@@ -1,6 +1,6 @@
 {
   "name": "@deepseek-ai/dsh-character-presets",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Optional character and research presets for DeepSeek Harness Web profiles",
   "private": true,
   "type": "module",
