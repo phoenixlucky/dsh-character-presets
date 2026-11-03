@@ -55,5 +55,6 @@ The avatars are 512 × 512 WebP icons cropped from a shared character sheet for 
 ## Implementation notes
 
 - `cordis.patch.yml` registers the presets with `@deepseek-ai/dsh-agent-preset` and supplies persona and time-context instructions.
+- `locale/en.json` and `locale/zh.json` provide the display name and summary shown in the plugin list. Harness reads them through the `./locale/*.json` export, so keep that export and the `locale` entry in `files`; without them the plugin falls back to its package name.
 - The target Web profile must already provide the preset registry and the referenced DSH packages.
 - This bundle does not install or configure browser, research, or account connections. Tools are available only when the Web profile has them configured.

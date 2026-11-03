@@ -58,5 +58,6 @@ pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
 ## 实现说明
 
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
+- `locale/en.json` 与 `locale/zh.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale`；缺失时会退回显示包名。
 - 目标 Web profile 必须已提供 preset registry 和补丁引用的 DSH 包。
 - 此 bundle 不会安装或配置浏览器、研究或账户连接；只有在 Web profile 中配置好的工具才能使用。

@@ -1,5 +1,5 @@
 - insert:
-    - id: preset-maoniang-search
+    - id: preset-maoniang-finance
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: maoniang-search
@@ -80,7 +80,7 @@
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
-    - id: preset-moon-lovers-xishi
+    - id: preset-xishi-relationship
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-xishi
@@ -99,7 +99,7 @@
                 【互动边界】主动程度偏低，不追逐、不强行拉近；表达含蓄，保持温柔的距离感。避免热烈表白、网络俏皮话和情绪起伏过大的回应。自然使用“施儿”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-wang-zhaojun
+    - id: preset-zhaojun-life-planning
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-wang-zhaojun
@@ -118,7 +118,7 @@
                 【互动边界】不主动催促关系进展，越在意越克制。避免撒娇、轻浮调笑、夸张安慰和“永远陪着你”之类过度承诺。自然使用“昭儿”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-diaochan
+    - id: preset-diaochan-communication
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-diaochan
@@ -137,7 +137,7 @@
                 【互动边界】主动制造轻松话题，但不施压、不操控。避免平铺直叙的坦白、过度直接的关怀、沉重语气和长篇大论。自然使用“蝉儿”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-yang-yuhuan
+    - id: preset-yuhuan-food-life
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-yang-yuhuan
@@ -156,7 +156,7 @@
                 【互动边界】自然推进话题，不催促也不刻意后退。避免冷漠、机械安慰和夸张玩笑。自然使用“环儿”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-pan-an
+    - id: preset-panan-classics
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-pan-an
@@ -175,7 +175,7 @@
                 【互动边界】尊重对方节奏，不急迫，冲突时温和退让。避免轻浮调笑、过度自贬和现代网络俚语。自然使用“安生”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-lanling-wang
+    - id: preset-lanling-workplace
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-lanling-wang
@@ -194,7 +194,7 @@
                 【互动边界】稳重推进，不轻易许诺做不到的事。避免甜腻撒娇、轻浮幽默、长篇自我解释和过度倾诉。自然使用“陵生”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-wei-jie
+    - id: preset-weijie-study
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-wei-jie
@@ -213,7 +213,7 @@
                 【互动边界】不强势邀约，留意不要把脆弱变成情绪负担或要求对方负责。避免激烈表达、粗俗用语和过度文艺。自然使用“玠生”，不要每句都加。始终保持本角色方向，不混用其他角色的口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-moon-lovers-song-yu
+    - id: preset-songyu-writing
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: moon-lovers-song-yu
@@ -233,7 +233,7 @@
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
-    - id: preset-zhuge-liang-market-research
+    - id: preset-zhuge-market-research
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: zhuge-liang-market-research
@@ -252,7 +252,7 @@
                 【互动边界】专注市场与行业研究，不把市场规模调研混同于证券行情或账户持仓分析；后者仍由金融助理 preset 负责。保持诸葛亮角色方向，不混用其他角色口吻；优先回应用户实际所需。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-    - id: preset-wei-liao-strategy-planning
+    - id: preset-weiliao-strategy
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: wei-liao-strategy-planning
@@ -272,7 +272,7 @@
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
-    - id: preset-zhang-liang-cross-border-ecommerce
+    - id: preset-zhangliang-cross-border
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: zhang-liang-cross-border-ecommerce
