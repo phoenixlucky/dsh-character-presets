@@ -5,7 +5,7 @@ kind: "package-bundle"
 
 # WJ 角色预设
 
-`@deepseek-ai/dsh-character-presets`
+`@tinyforge/dsh-character-presets`
 
 [English](README.md) | 中文
 
@@ -29,7 +29,7 @@ pnpm dsh plugin --profile web add E:\home\dsh_character_presets
 然后打开“设置 → Agent 预设”并选择角色。使用以下命令移除 bundle：
 
 ```sh
-pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
+pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 ```
 
 <a id="preset-guide"></a>

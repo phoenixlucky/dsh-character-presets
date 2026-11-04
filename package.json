@@ -1,8 +1,7 @@
 {
-  "name": "@deepseek-ai/dsh-character-presets",
+  "name": "@tinyforge/dsh-character-presets",
   "version": "1.3.0",
   "description": "Character presets with WebP icons for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, and cross-border ecommerce roles",
-  "private": true,
   "type": "module",
   "exports": {
     "./cordis.patch.yml": "./cordis.patch.yml",
@@ -30,5 +29,8 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

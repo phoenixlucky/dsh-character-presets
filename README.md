@@ -5,7 +5,7 @@ kind: "package-bundle"
 
 # WJ Character Presets
 
-`@deepseek-ai/dsh-character-presets`
+`@tinyforge/dsh-character-presets`
 
 English | [中文](README.zh.md)
 
@@ -28,7 +28,7 @@ pnpm dsh plugin --profile web add E:\home\dsh_character_presets
 Then open **Settings → Agent presets** and select a preset. Remove the bundle with:
 
 ```sh
-pnpm dsh plugin --profile web remove @deepseek-ai/dsh-character-presets
+pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 ```
 
 ## Preset guide
