@@ -1,6 +1,6 @@
 {
   "name": "@tinyforge/dsh-character-presets",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Character presets with WebP icons for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, and cross-border ecommerce roles",
   "type": "module",
   "exports": {
@@ -16,14 +16,17 @@
     "assets/preset-icons"
   ],
   "dependencies": {
-    "@deepseek-ai/dsh-agent-preset": "0.2.2-alpha.2",
-    "@deepseek-ai/dsh-persona": "0.2.2-alpha.2",
-    "@deepseek-ai/dsh-time-context": "0.2.2-alpha.2"
+    "@deepseek-ai/dsh-agent-preset": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-persona": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-time-context": "0.2.2-rc.1"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "4.0.6-alpha.1",
-    "@deepseek-ai/cordis-plugin-loader": "1.0.7-alpha.1",
-    "@deepseek-ai/dsh-agent-preset-registry": "0.2.2-alpha.2"
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/cordis-plugin-loader": "~1.1.0",
+    "@deepseek-ai/dsh-agent-preset-registry": "0.2.2-rc.1"
+  },
+  "engines": {
+    "dsh": "0.2.2-rc.1"
   },
   "dsh": {
     "bundle": {
