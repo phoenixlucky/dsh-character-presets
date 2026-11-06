@@ -51,7 +51,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 | 张良 · 海贸筹略 | <img src="assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="张良"/> | 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。 |
 | 星小彪 · 跨境电商分析 | — | 只盯一件事，以 Home Depot、Lowe's 为主：用 `query-canvas` 调取自家店铺、商品与投放数据，上网核实平台与市场事实，再把差距拆成能落地的改法。 |
 
-每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 Chrome MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。星小彪通过 `query-canvas` MCP 读取自有经营数据，通过 `streamable-mcp-server-new` MCP 核实外部信息；未连接时会说明缺哪些数据，不编造数字。
+每个角色都保留独立的人设风格。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 `mcp-chrome-super` MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。星小彪通过 `query-canvas` MCP 读取自有经营数据，通过 `mcp-chrome-super` MCP 核实外部信息；未连接时会说明缺哪些数据，不编造数字。
 
 角色头像为 512 × 512 WebP 格式，均由同一张角色图阵裁切，以保持插画风格统一。
 
