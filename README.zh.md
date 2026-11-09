@@ -62,3 +62,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - `locale/en.json` 与 `locale/zh.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale`；缺失时会退回显示包名。
 - 本 bundle 面向 DSH 0.2.2-rc.1，并固定匹配的 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona` 与 `@deepseek-ai/dsh-time-context` 版本；DSH runtime 升级时需同步更新。
 - 此 bundle 不会安装或配置浏览器、研究或账户连接；只有在 Web profile 中配置好的工具才能使用。
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。

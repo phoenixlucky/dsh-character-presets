@@ -59,3 +59,7 @@ The avatars are 512 × 512 WebP icons cropped from a shared character sheet for 
 - `locale/en.json` and `locale/zh.json` provide the display name and summary shown in the plugin list. Harness reads them through the `./locale/*.json` export, so keep that export and the `locale` entry in `files`; without them the plugin falls back to its package name.
 - The bundle targets DSH 0.2.2-rc.1 and pins matching `@deepseek-ai/dsh-agent-preset`, `@deepseek-ai/dsh-persona`, and `@deepseek-ai/dsh-time-context` releases; update them together when the DSH runtime changes.
 - This bundle does not install or configure browser, research, or account connections. Tools are available only when the Web profile has them configured.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
