@@ -41,8 +41,8 @@
     </ul>
   </section>
 
-  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton" aria-expanded="false"><span class="seatLabel">尉缭 · 经世筹策</span></button></div>
-  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton" aria-expanded="false"><span class="seatLabel">黄道婆 · 织造流传</span></button></div>
+  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton seat" aria-haspopup="menu" aria-expanded="false"><span class="seatLabel">尉缭 · 经世筹策</span></button></div>
+  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton seat" aria-haspopup="menu" aria-expanded="false"><span class="seatLabel">黄道婆 · 织造流传</span></button></div>
 
   <div data-slot="conversation.chat.flow" id="chat">
     <div data-slot="conversation.chat.node" class="chatMessage">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</div>
@@ -130,8 +130,12 @@
   check('row sits before the description', weiliao[0] && weiliao[0].nextElementSibling === descOf('weiliao'));
   check('row is inside the card', weiliao[0] && cardOf('weiliao').contains(weiliao[0]));
   check('dropdown menu item gets a row', document.querySelectorAll('#menu [data-tf-preset-badges]').length === 1, document.querySelectorAll('#menu [data-tf-preset-badges]').length);
+  // The composer seat is a 28px trigger whose label is the preset name; a row
+  // inside it would spill onto the composer, and React re-labels the same button
+  // on every pick, so every stranded row would stay.
+  const seatButton = document.querySelector('[data-slot="conversation.composer.dock"] .seat');
   const seatRow = rowsFor('黄道婆 · 织造流传');
-  check('name-only surface gets a row after the name', seatRow.length === 1 && seatRow[0].previousElementSibling && seatRow[0].previousElementSibling.className === 'seatLabel', seatRow.length);
+  check('compact name-only trigger is not decorated', seatRow.length === 0 && seatButton.querySelector('[data-tf-preset-badges]') === null, seatRow.length);
   check('no row inside a chat message', document.querySelector('[data-slot^="conversation.chat."] [data-tf-preset-badges]') === null);
   check('hidden copy does not steal the row', rowsFor('尉缭 · 经世筹策').length === 1 && cardOf('weiliao').contains(rowsFor('尉缭 · 经世筹策')[0]));
   check('chips rendered', weiliao[0] && [...weiliao[0].querySelectorAll('i')].map((c) => c.textContent).join(',') === '战略,落地');
@@ -187,18 +191,20 @@
   const debug = window.__tfPresetBadges || {};
   const rowDump = [...document.querySelectorAll('[data-tf-preset-badges]')].map((row) => `${row.getAttribute('data-tf-preset-badges')}<-${row.parentElement && row.parentElement.tagName}`);
   check('debug hook reports rows', debug.rows >= 3, `${debug.rows} :: ${rowDump.join(' ;; ')}`);
-  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 14, debug.missing && debug.missing.join('|'));
+  // Four surfaces have rows (尉缭 card, 星小彪 card, 墨子 card, the menu item); the
+  // two seat buttons and the hidden copy must not add any.
+  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 15, debug.missing && debug.missing.length);
 
-  // A name-only surface rendered after boot must still be picked up.
-  const lateSeat = document.createElement('div');
-  lateSeat.className = 'seat';
-  lateSeat.setAttribute('data-slot', 'conversation.composer.dock');
-  lateSeat.innerHTML = '<button class="seatButton"><span class="seatLabel">冯嫽 · 西域通译</span></button>';
-  document.body.append(lateSeat);
-  await frame();
-  await frame();
-  const lateSeatRow = rowsFor('冯嫽 · 西域通译');
-  check('late name-only surface gets a row', lateSeatRow.length === 1 && lateSeatRow[0].previousElementSibling && lateSeatRow[0].previousElementSibling.className === 'seatLabel', lateSeatRow.length);
+  // Selecting presets re-labels the same seat button. Every pick used to strand
+  // the row it had matched there, piling chips onto the composer.
+  const picks = ['冯嫽 · 西域通译', '墨子 · 守御非攻', '黄道婆 · 织造流传'];
+  for (const name of picks) {
+    document.querySelector('[data-slot="conversation.composer.dock"] .seatLabel').textContent = name;
+    await frame();
+  }
+  const stranded = document.querySelectorAll('[data-slot="conversation.composer.dock"] [data-tf-preset-badges]').length;
+  check('repeated seat re-labels strand no rows', stranded === 0, stranded);
+  check('re-labelled seat still undecorated', document.querySelector('[data-slot="conversation.composer.dock"] [data-tf-preset-badges]') === null);
 
   // Full roster: every preset description from cordis.patch.yml must decorate.
   const ROSTER = [

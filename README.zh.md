@@ -88,12 +88,13 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
 - `locale/*.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale/*.json`；缺失时会退回显示包名。
 - 预设卡片只渲染 name 与 description 两个字段；preset 的配置项只有 `id`、`name`、`description`、`order`、`plugins`。所以 description 里不写任何标记或 emoji 标签，领域标签统一由 `client.js` 的 `PRESETS[].tags` 提供。
-- `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间，只有名称的界面（输入框旁的预设座位）插在名称之后。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
-- 匹配有两条路径：渲染了描述的界面（Agent 预设卡片、预设下拉项）用描述里的一段稳定文字（`PRESETS[].needle`）匹配，行插在该文本之前；只渲染名称的界面（输入框旁的预设座位）用完整可见名称（`PRESETS[].name`）匹配，行插在名称之后。描述优先，所以同时显示名称与描述的卡片仍把行放在两者之间。不依赖任何 CSS 类名。
+- `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间；输入框预设下拉的每一项里插在名称与描述之间。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
+- 匹配有两条路径：渲染了描述的界面（Agent 预设卡片、预设下拉项）用描述里的一段稳定文字（`PRESETS[].needle`）匹配，行插在该文本之前；只渲染名称的界面用完整可见名称（`PRESETS[].name`）匹配，行插在名称之后。描述优先，所以同时显示名称与描述的卡片仍把行放在两者之间。不依赖任何 CSS 类名。
+- 把标签画在控件内部的紧凑触发器一律跳过。输入框旁的预设座位是 `button[aria-haspopup="menu"] > span`，而 React 每次切换只改这个按钮里的文字、不复用新节点，于是行会溢出 28px 的按钮，并且每次选择都留下上一行，堆在输入框上。因此只有内容容器才插行：下拉项符合（它包着名称 + 描述列），设置卡片也符合（描述是普通块）。
 - 只跳过两类区域：聊天记录（`[data-slot^="conversation.chat."]`，用户可能在那里引用描述）与不参与渲染的节点（`script`、`style`、`template`、`noscript`、`title`）。菜单、列表框与 `aria-hidden` 子树照常装饰——有些 profile 关掉了设置页，预设只在输入框下拉里出现。
 - 模块只插入自己的节点，不改写、不重新挂载、不改宿主样式，也不会撑宽设置面板；重渲染时复用原行（描述元素被替换则改挂到新元素），不会叠加重复行；`ctx.effect` 卸载时取消待执行的帧、移除全部行与头像与样式，并释放全局标记。若已有其他 bundle 占用了徽章，第二份只打一条警告，保持静默。
 - 打开预设列表后可在控制台执行 `window.__tfPresetBadges` 查看 `{ package, rows, avatars, missing, disposed }`。`missing` 列出没找到卡片的预设——宿主标记变动就是这个样子，此时该行退回「名称 + 纯文本描述」，不显示任何标签。
-- 改名或改写描述时要同步 `PRESETS`：needle 必须仍是 `description` 的原样片段，否则那张卡片会失去徽章。`test/badge-harness.html` 在普通浏览器页面里复现卡片、座位、下拉、重渲染与卸载路径，逐条打印 PASS/FAIL。
+- 改名或改写描述时要同步 `PRESETS`：needle 必须仍是 `description` 的原样片段，否则那张卡片会失去徽章。`test/badge-harness.html` 在普通浏览器页面里复现卡片、触发器、下拉、重渲染与卸载路径，逐条打印 PASS/FAIL；`test/seat-repro.html` 按宿主标记重建真实的输入框座位并连续切换预设，也就是 v1.6.2 修掉的回归。
 - 本 bundle 面向 DSH 0.2.2-rc.1，并固定匹配的 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona` 与 `@deepseek-ai/dsh-time-context` 版本；DSH runtime 升级时需同步更新。
 - 此 bundle 不会安装或配置浏览器、研究或账户连接；只有在 Web profile 中配置好的工具才能使用。编程大师预设同样不安装 Rust、Node 或打包工具。
 - 头像文件位于 `assets/preset-icons/<icon>.webp`，由 Harness 的资源路由提供；这要求 `package.json` 里有 `"./assets/*": "./assets/*"` 导出、`files` 里含对应文件。`files` 故意逐个列出 19 个图标：若只写目录，仓库里的 `contact-sheet.webp`（总览图，仅供仓库）也会被打包发布。因此新增图标时还要在 `files` 里补一行。文件缺失、返回 404 或宿主没有该路由时，退回首字圆章而不是破图。该路由在 Harness 启动时解析，因此新装或改动过的副本需要重启 Harness 才会出现头像。

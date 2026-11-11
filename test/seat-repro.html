@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>preset seat repro</title>
+<style>
+  :root { --dsw-radius-sm: 6px; --dsw-alias-label-primary: #1f2328; --dsw-alias-label-caption: #8a9099; }
+  body { font: 14px/1.5 system-ui, sans-serif; margin: 24px; background: #fff; }
+  /* Real host CSS (dsh-client-ui-agent-preset AgentPresetSeat.module.css), trimmed. */
+  .menuAnchor { min-width: 54px; max-width: 100%; }
+  .seat {
+    border-radius: var(--dsw-radius-sm);
+    min-width: 0;
+    max-width: min(100%, 240px);
+    min-height: 28px;
+    color: var(--dsw-alias-label-primary);
+    white-space: nowrap;
+    cursor: pointer;
+    background: 0 0;
+    border: none;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    display: inline-flex;
+  }
+  .seat[aria-expanded="true"] { background: rgba(0,0,0,.06); }
+  .seatLabel { text-overflow: ellipsis; white-space: nowrap; min-width: 0; overflow: hidden; }
+  .chevron { color: var(--dsw-alias-label-caption); flex: none; }
+  .item { flex-direction: column; gap: 2px; max-width: 280px; display: flex; }
+  .itemName { color: var(--dsw-alias-label-primary); font-size: 13px; line-height: 20px; }
+  .itemDesc { color: var(--dsw-alias-label-caption); white-space: normal; font-size: 12px; line-height: 16px; }
+  /* Composer chrome, simplified: the seat sits in a one-line toolbar row. */
+  .composer { display: flex; align-items: center; gap: 8px; height: 32px; border: 1px solid #e3e5e8; border-radius: 10px; padding: 0 8px; width: 520px; }
+  .composerText { color: #9aa0a6; font-size: 14px; }
+  [data-menu-panel] { position: fixed; top: 120px; left: 220px; background: #fff; border: 1px solid #e3e5e8; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.12); padding: 6px; width: 320px; display: flex; flex-direction: column; }
+  [data-menu-panel] button[role="menuitem"] { all: unset; display: block; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+  #out { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 12px; margin-top: 16px; }
+  .fail { color: #b3261e; font-weight: 600; }
+  .pass { color: #0a7d33; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>composer preset seat repro (real DSH markup)</h1>
+
+<div class="composer" data-composer-card>
+  <button type="button" aria-label="attach">+</button>
+  <div class="menuAnchor" data-seat-host></div>
+  <span class="composerText">描述你想要构建的内容，/ 调用指令，@ 文件或对话</span>
+</div>
+
+<pre id="out">running…</pre>
+
+<script>
+  window.__ModuleLoader__ = { load(payload) { window.__HARNESS_FACTORY = payload; } };
+</script>
+<script src="../client.js"></script>
+<script>
+  const PRESETS = [
+    { name: '猫娘·金融助理', desc: '亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。' },
+    { name: '西施 · 溪畔清影', desc: '清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。' },
+    { name: '王昭君 · 塞上明月', desc: '沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。' },
+    { name: '宋玉 · 才冠楚襄', desc: '风雅机敏，按读者与场景构思、改写和润色文字，让表达有韵味也不失清楚。' },
+    { name: '王贞仪 · 观象授时', desc: '先测再断：给性能定基线，给告警定口径。' },
+  ];
+
+  const svg = (path) => {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    el.setAttribute('viewBox', '0 0 16 16');
+    el.setAttribute('width', '16');
+    el.setAttribute('height', '16');
+    el.innerHTML = `<path d="${path}" fill="currentColor"/>`;
+    return el;
+  };
+
+  const seatHost = document.querySelector('[data-seat-host]');
+
+  // Mirrors AgentPresetSeat: button.seat[aria-haspopup=menu] > icon + span.seatLabel + chevron.
+  const renderSeat = (name) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'seat';
+    button.setAttribute('aria-haspopup', 'menu');
+    button.setAttribute('aria-expanded', 'false');
+    button.title = '切换 Agent 预设';
+    const label = document.createElement('span');
+    label.className = 'seatLabel';
+    label.textContent = name;
+    const chevron = svg('M4 6l4 4 4-4');
+    chevron.setAttribute('class', 'chevron');
+    button.append(svg('M8 2a6 6 0 100 12A6 6 0 008 2z'), label, chevron);
+    seatHost.replaceChildren(button);
+    return button;
+  };
+
+  /** React keeps the seat button and re-renders only its label text. */
+  const relabelSeat = (name) => {
+    const label = seatHost.querySelector('.seatLabel');
+    label.textContent = name;
+  };
+
+  // Mirrors the portaled Menu: buttons with role=menuitem wrapping span.item(name, desc).
+  const renderMenu = (items) => {
+    document.querySelector('[data-menu-panel]')?.remove();
+    const panel = document.createElement('div');
+    panel.setAttribute('role', 'menu');
+    panel.setAttribute('data-menu-panel', '');
+    for (const preset of items) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.setAttribute('role', 'menuitem');
+      const item = document.createElement('span');
+      item.className = 'item';
+      const name = document.createElement('span');
+      name.className = 'itemName';
+      name.textContent = preset.name;
+      const desc = document.createElement('span');
+      desc.className = 'itemDesc';
+      desc.textContent = preset.desc;
+      item.append(name, desc);
+      button.append(item);
+      panel.append(button);
+    }
+    document.body.append(panel);
+    return panel;
+  };
+
+  const frame = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const rowsIn = (node) => [...node.querySelectorAll('[data-tf-preset-badges]')];
+  const seatRows = () => rowsIn(seatHost);
+
+  (async () => {
+    const factory = window.__HARNESS_FACTORY.factory;
+    const require = (reference) => reference;
+    require.asset = (reference) => reference;
+    const mod = factory(require);
+    mod.apply({ effect(fn) { return fn(); } });
+    await frame();
+
+    const reports = [];
+    renderSeat(PRESETS[0].name);
+    await frame();
+    // A session: pick a preset from the list, which re-renders the seat label.
+    const pick = async (preset) => {
+      const panel = renderMenu(PRESETS);
+      await frame();
+      await frame();
+      const rowsInMenu = rowsIn(panel).length;
+      panel.remove();
+      relabelSeat(preset.name);
+      await frame();
+      await frame();
+      reports.push({ preset: preset.name, rowsInMenu, rowsInSeat: seatRows().length });
+    };
+    for (const preset of PRESETS) await pick(preset);
+
+    const seatBox = seatHost.getBoundingClientRect();
+    const overflow = seatRows().map((row) => {
+      const box = row.getBoundingClientRect();
+      return { left: Math.round(box.left), right: Math.round(box.right), top: Math.round(box.top), height: Math.round(box.height) };
+    });
+    const outside = overflow.filter((box) => box.right > seatBox.right + 1 || box.top < seatBox.top - 1 || box.height > seatBox.height + 1);
+
+    const lines = reports.map((r) => `pick ${r.preset}: menuRows=${r.rowsInMenu} seatRows=${r.rowsInSeat}`);
+    const fail = reports.some((r) => r.rowsInSeat !== 0);
+    const pre = document.getElementById('out');
+    pre.className = fail ? 'fail' : 'pass';
+    pre.textContent = `${fail ? 'BUG REPRODUCED' : 'OK'}  seatBox=${JSON.stringify({ w: Math.round(seatBox.width), h: Math.round(seatBox.height) })}\n` +
+      `rows stranded inside the seat button: ${seatRows().length}\n` +
+      `rows overflowing the seat box: ${outside.length}\n\n` + lines.join('\n');
+    window.__repro = { reports, seatRows: seatRows().length, outside: outside.length };
+  })();
+</script>
+</body>
+</html>

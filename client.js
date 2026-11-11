@@ -8,11 +8,17 @@
  * again on dispose.
  *
  * Matching is by a distinctive slice of each preset's description, never by CSS
- * class. Rows inside menus, listboxes, tooltips, and aria-hidden subtrees are
- * skipped, because the same description also appears in the composer's preset
- * dropdown and in dialogs. A host markup change can only stop the decoration
- * from matching; nothing renders and nothing breaks. Inspect
+ * class. Surfaces that render only the name (no description) are matched by the
+ * exact visible name instead. Chat messages and non-rendered nodes are skipped,
+ * because a user may quote a preset there. A host markup change can only stop the
+ * decoration from matching; nothing renders and nothing breaks. Inspect
  * `window.__tfPresetBadges` after opening the preset list.
+ *
+ * A compact trigger that draws its label inside the control (the composer's
+ * preset seat is `button[aria-haspopup="menu"] > span`) is skipped: a row there
+ * would spill out of the button and stay stranded, one per selection, on top of
+ * the composer. The dropdown that the seat opens is decorated, because each of
+ * its items wraps a name+description column rather than being a bare label.
  *
  * Avatars are served from this package's own `/plugins/<package>/assets/` route,
  * which requires the `./assets/*` export in package.json. A preset without an
@@ -284,12 +290,44 @@ window.__ModuleLoader__.load({
      */
     const isCandidate = (leaf) => leaf.childElementCount === 0 && leaf.closest(SKIP_SELECTOR) === null;
 
+    /**
+     * A trigger draws its label inside the control itself — the composer's preset
+     * seat is `button[aria-haspopup="menu"] > span` — and React keeps that button
+     * while swapping its label text. A row inserted there spills out of the 28px
+     * control, and because the button survives the swap, each selection strands
+     * the previous preset's row inside it: one row per pick, piled on top of the
+     * composer. Rows belong in a content container, so a label that fills the
+     * whole trigger is skipped. Menu items are triggers too, but they wrap a
+     * name+description column, so their text never equals the matched text.
+     */
+    const TRIGGER_SELECTOR = [
+      'button',
+      '[role="button"]',
+      '[role="menuitem"]',
+      '[role="option"]',
+      '[role="combobox"]',
+      '[role="tab"]',
+      '[aria-haspopup]',
+      'a[href]',
+      'summary',
+    ].join(',');
+
+    /** True when the label is the trigger's entire content, i.e. a compact control. */
+    const fillsTrigger = (leaf, text) => {
+      const trigger = leaf.closest(TRIGGER_SELECTOR);
+      if (trigger === null) return false;
+      const content = trigger.textContent;
+      return typeof content === 'string' && content.trim() === text;
+    };
+
     const decorateDescription = (leaf) => {
       if (!isCandidate(leaf)) return;
       const text = leaf.textContent;
       if (typeof text !== 'string' || text.length < 8) return;
       const preset = entryFor(text);
-      if (preset !== null) ensureRow(leaf, preset, 'before');
+      if (preset === null) return;
+      if (fillsTrigger(leaf, text.trim())) return;
+      ensureRow(leaf, preset, 'before');
     };
 
     const decorateName = (leaf) => {
@@ -302,6 +340,7 @@ window.__ModuleLoader__.load({
       if (preset === undefined) return;
       const current = state.get(preset.name);
       if (current !== undefined && current.row.isConnected) return;
+      if (fillsTrigger(leaf, trimmed)) return;
       ensureRow(leaf, preset, 'after');
     };
 
@@ -351,6 +390,9 @@ window.__ModuleLoader__.load({
       collectLeaves(scope, leaves);
       for (const leaf of leaves) decorateDescription(leaf);
       for (const leaf of leaves) decorateName(leaf);
+      // A closed dropdown takes its rows with it; drop those stale entries so a
+      // moved row is never counted twice and `missing` stays truthful.
+      for (const [name, value] of state) if (!value.row.isConnected) state.delete(name);
       updateDebug();
     };
 
