@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>preset badges harness</title>
+<style>
+  body { font: 14px/1.5 system-ui, sans-serif; margin: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 12px; list-style: none; padding: 0; }
+  .card { border: 1px solid #ccc; border-radius: 12px; }
+  .cardMain { all: unset; display: flex; flex-direction: column; gap: 4px; padding: 12px; cursor: pointer; }
+  .cardHead { display: flex; }
+  .cardName { font-weight: 500; }
+  .cardDesc { color: #666; font-size: 12px; }
+  .menu { border: 1px solid #ddd; padding: 8px; width: 280px; }
+  .item { display: flex; flex-direction: column; }
+  #result { white-space: pre-wrap; font-family: ui-monospace, monospace; }
+  .pass { color: #0a7d33; }
+  .fail { color: #b3261e; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>preset badge client harness</h1>
+<p>Emulates the DSH preset card, the composer seat, and the preset dropdown, then loads <code>../client.js</code> as a classic script.</p>
+
+<div id="app">
+  <section class="settings-section" aria-labelledby="preset-title">
+    <h2 id="preset-title">Agent presets</h2>
+    <ul class="cards" id="cards">
+      <li class="card" data-test-card="weiliao">
+        <button class="cardMain" aria-label="Select: 尉缭 · 经世筹策">
+          <div class="cardHead"><div class="cardIdentity"><span class="cardName">尉缭 · 经世筹策</span></div></div>
+          <div class="cardDesc">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</div>
+        </button>
+      </li>
+      <li class="card" data-test-card="xingxiaobiao">
+        <button class="cardMain" aria-label="Select: 星小彪 · 跨境电商分析">
+          <div class="cardHead"><div class="cardIdentity"><span class="cardName">星小彪 · 跨境电商分析</span></div></div>
+          <div class="cardDesc">只盯跨境电商经营，以 Home Depot、Lowe's 为主：先调取自有店铺数据，再上网核实平台与合规信息。</div>
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton" aria-expanded="false"><span class="seatLabel">尉缭 · 经世筹策</span></button></div>
+
+  <div data-slot="conversation.chat.flow" id="chat">
+    <div data-slot="conversation.chat.node" class="chatMessage">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</div>
+  </div>
+
+  <div role="menu" class="menu" id="menu">
+    <div role="menuitem" class="item">
+      <span class="itemName">尉缭 · 经世筹策</span>
+      <span class="itemDesc">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</span>
+    </div>
+  </div>
+
+  <div aria-hidden="true" id="hidden-copy"><span>把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</span></div>
+</div>
+
+<pre id="result">running…</pre>
+
+<script>
+  // A hidden tab suspends requestAnimationFrame, which would stall both this
+  // harness and the module under test. Timer-backed frames keep it runnable
+  // headlessly (a background tab, a CI browser) with the same scheduling order.
+  if (document.visibilityState === 'hidden') {
+    window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 16);
+    window.cancelAnimationFrame = (id) => clearTimeout(id);
+  }
+  // 1x1 transparent PNG, used to exercise the successful avatar path.
+  window.__HARNESS_ASSET = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+  window.__HARNESS_FACTORY = null;
+  window.__ModuleLoader__ = {
+    load({ id, factory }) {
+      window.__HARNESS_FACTORY = { id, factory };
+    },
+  };
+</script>
+<script src="../client.js"></script>
+<script>
+(async () => {
+  const results = [];
+  const check = (name, ok, detail) => {
+    results.push({ name, ok: !!ok, detail: detail === undefined ? '' : String(detail) });
+  };
+  const frame = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const waitFor = async (predicate, timeout = 2000) => {
+    const started = performance.now();
+    while (performance.now() - started < timeout) {
+      if (predicate()) return true;
+      await frame();
+    }
+    return false;
+  };
+  const rowsFor = (name) => [...document.querySelectorAll('[data-tf-preset-badges]')].filter((row) => row.getAttribute('data-tf-preset-badges') === name);
+  const cardOf = (key) => document.querySelector(`[data-test-card="${key}"]`);
+  const descOf = (key) => cardOf(key).querySelector('.cardDesc');
+
+  const makeInstance = () => {
+    const factory = window.__HARNESS_FACTORY.factory;
+    const require = (reference) => reference;
+    require.asset = (reference) => (reference.includes('maoniang-search') || reference.includes('wei-liao') ? window.__HARNESS_ASSET : reference);
+    const mod = factory(require);
+    const disposers = [];
+    const ctx = { effect(fn) { const d = fn(); disposers.push(d); return d; } };
+    mod.apply(ctx);
+    return () => { for (const d of disposers.reverse()) if (typeof d === 'function') d(); };
+  };
+
+  check('module id', window.__HARNESS_FACTORY && window.__HARNESS_FACTORY.id === '@tinyforge/dsh-character-presets', window.__HARNESS_FACTORY && window.__HARNESS_FACTORY.id);
+
+  const disposeA = makeInstance();
+  await frame();
+
+  const weiliao = rowsFor('尉缭 · 经世筹策');
+  const xing = rowsFor('星小彪 · 跨境电商分析');
+  check('one row per card', weiliao.length === 1 && xing.length === 1, `${weiliao.length}/${xing.length}`);
+  check('row sits before the description', weiliao[0] && weiliao[0].nextElementSibling === descOf('weiliao'));
+  check('row is inside the card', weiliao[0] && cardOf('weiliao').contains(weiliao[0]));
+  check('no row inside role=menu', document.querySelector('[role="menu"] [data-tf-preset-badges]') === null);
+  check('no row inside a chat message', document.querySelector('[data-slot^="conversation."] [data-tf-preset-badges]') === null);
+  check('no row inside aria-hidden', document.querySelector('[aria-hidden="true"] [data-tf-preset-badges]') === null);
+  check('chips rendered', weiliao[0] && [...weiliao[0].querySelectorAll('i')].map((c) => c.textContent).join(',') === '战略,落地');
+
+  await frame();
+  const avatarOf = (row) => row && row.querySelector('[data-tf-preset-avatar]');
+  const imageReady = await waitFor(() => avatarOf(weiliao[0]) && avatarOf(weiliao[0]).tagName === 'IMG');
+  check('icon preset gets an <img> avatar', imageReady, avatarOf(weiliao[0]) && avatarOf(weiliao[0]).tagName);
+  // 星小彪's asset is not stubbed here, so the probe 404s and the monogram must take over.
+  const monogramReady = await waitFor(() => avatarOf(xing[0]) && avatarOf(xing[0]).tagName === 'SPAN');
+  check('failed avatar falls back to a monogram', monogramReady && avatarOf(xing[0]).textContent === '星', avatarOf(xing[0]) && `${avatarOf(xing[0]).tagName}:${avatarOf(xing[0]).textContent}`);
+
+  check('host inline styles untouched', [...document.querySelectorAll('.settings-section, .cards, .card, .cardMain')].every((el) => el.getAttribute('style') === null));
+
+  // A second instance must not decorate twice and must not tear the first one down.
+  const disposeB = makeInstance();
+  await frame();
+  check('second instance does not duplicate rows', rowsFor('尉缭 · 经世筹策').length === 1, rowsFor('尉缭 · 经世筹策').length);
+  disposeB();
+  await frame();
+  check('second instance dispose keeps the first rows', rowsFor('尉缭 · 经世筹策').length === 1, rowsFor('尉缭 · 经世筹策').length);
+
+  // React-style re-render: the description element is replaced in place.
+  const fresh = document.createElement('div');
+  fresh.className = 'cardDesc';
+  fresh.textContent = descOf('weiliao').textContent;
+  descOf('weiliao').replaceWith(fresh);
+  await frame();
+  await frame();
+  check('re-render keeps exactly one row', rowsFor('尉缭 · 经世筹策').length === 1, rowsFor('尉缭 · 经世筹策').length);
+  check('row follows the new description', rowsFor('尉缭 · 经世筹策')[0].nextElementSibling === fresh);
+
+  // The same description in another visible place must not steal or duplicate the row.
+  const dialog = document.createElement('div');
+  dialog.id = 'guide';
+  dialog.textContent = '把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。';
+  document.body.append(dialog);
+  await frame();
+  await frame();
+  check('duplicate description elsewhere adds no row', rowsFor('尉缭 · 经世筹策').length === 1, rowsFor('尉缭 · 经世筹策').length);
+  check('original row stays in the card', cardOf('weiliao').contains(rowsFor('尉缭 · 经世筹策')[0]));
+
+  // Opening the settings section later must still decorate (scoped scan).
+  const late = document.createElement('li');
+  late.className = 'card';
+  late.setAttribute('data-test-card', 'mozi');
+  late.innerHTML = '<button class="cardMain"><div class="cardHead"><div class="cardIdentity"><span class="cardName">墨子 · 守御非攻</span></div></div><div class="cardDesc">先设防再开门：默认拒绝、最小授权、失败关闭。</div></button>';
+  document.getElementById('cards').append(late);
+  await frame();
+  await frame();
+  check('late-rendered card gets a row', rowsFor('墨子 · 守御非攻').length === 1, rowsFor('墨子 · 守御非攻').length);
+
+  const debug = window.__tfPresetBadges || {};
+  const rowDump = [...document.querySelectorAll('[data-tf-preset-badges]')].map((row) => `${row.getAttribute('data-tf-preset-badges')}<-${row.parentElement && row.parentElement.tagName}`);
+  check('debug hook reports rows', debug.rows >= 3, `${debug.rows} :: ${rowDump.join(' ;; ')}`);
+  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 16, debug.missing && debug.missing.join('|'));
+
+  // Full roster: every preset description from cordis.patch.yml must decorate.
+  const ROSTER = [
+    ['猫娘·金融助理', '亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。'],
+    ['西施 · 溪畔清影', '清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。'],
+    ['王昭君 · 塞上明月', '沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。'],
+    ['貂蝉 · 月下惊鸿', '灵动机敏，帮你斟酌聊天语气、润色消息，在尴尬或暧昧时留出恰好的接话空间。'],
+    ['杨玉环 · 华清春暖', '温暖明媚，根据口味、食材和场景搭配菜单与日常安排，也记得你提过的小细节。'],
+    ['潘安 · 掷果盈车', '温润真挚，陪你读懂古人、典故与诗文，分清史实和传说，也把关心落在细节里。'],
+    ['兰陵王 · 面具之下', '外冷内柔，帮你厘清职场难题的目标、风险与选择，再给出简洁可行的行动步骤。'],
+    ['卫玠 · 清羸如玉', '清淡温柔，循序渐进地讲清难懂概念，把资料整理成提纲、练习和复习步骤。'],
+    ['宋玉 · 才冠楚襄', '风雅机敏，按读者与场景构思、改写和润色文字，让表达有韵味也不失清楚。'],
+    ['诸葛亮 · 隆中调研', '如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。'],
+    ['尉缭 · 经世筹策', '把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。'],
+    ['张良 · 海贸筹略', '从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。'],
+    ['星小彪 · 跨境电商分析', "只盯跨境电商经营，以 Home Depot、Lowe's 为主：先用 query-canvas 调取自有店铺与商品数据，再上网核实平台、竞品与合规信息，给出能落地的改法。"],
+    ['鲁班 · 机关营造', '以榫卯之准做桌面应用：先量后削，用契约与实测收口。'],
+    ['冯嫽 · 西域通译', '持节通译：先协商能力，再校验入参、审计调用。'],
+    ['顾恺之 · 传神写照', '画清界面的每一态：状态、焦点、留白与可访问性。'],
+    ['墨子 · 守御非攻', '先设防再开门：默认拒绝、最小授权、失败关闭。'],
+    ['黄道婆 · 织造流传', '把交付织成可重复的工序：门禁、构建、签名与分发。'],
+    ['王贞仪 · 观象授时', '先测再断：给性能定基线，给告警定口径。'],
+  ];
+  const roster = document.createElement('ul');
+  roster.className = 'cards';
+  roster.id = 'roster';
+  for (const [name, description] of ROSTER) {
+    const li = document.createElement('li');
+    li.className = 'card';
+    const button = document.createElement('button');
+    button.className = 'cardMain';
+    const head = document.createElement('div');
+    head.className = 'cardHead';
+    const identity = document.createElement('div');
+    identity.className = 'cardIdentity';
+    const nameEl = document.createElement('span');
+    nameEl.className = 'cardName';
+    nameEl.textContent = name;
+    const descEl = document.createElement('div');
+    descEl.className = 'cardDesc';
+    descEl.textContent = description;
+    identity.append(nameEl);
+    head.append(identity);
+    button.append(head, descEl);
+    li.append(button);
+    roster.append(li);
+  }
+  document.body.append(roster);
+  await frame();
+  await frame();
+  const decoratedRoster = ROSTER.filter(([name]) => rowsFor(name).length === 1).length;
+  check('full roster decorates all 19 presets', decoratedRoster === ROSTER.length, `${decoratedRoster}/${ROSTER.length}`);
+  check('full roster reports no missing preset', window.__tfPresetBadges && window.__tfPresetBadges.missing.length === 0, JSON.stringify(window.__tfPresetBadges && window.__tfPresetBadges.missing));
+
+  disposeA();
+  await frame();
+  check('dispose removes every row', document.querySelectorAll('[data-tf-preset-badges]').length === 0);
+  check('dispose removes every avatar', document.querySelectorAll('[data-tf-preset-avatar]').length === 0);
+  check('dispose removes the stylesheet', document.querySelector('style[data-tf-preset-badges-style]') === null);
+  check('dispose clears the owner', window.__tfPresetBadgesOwner === undefined);
+  check('dispose reports disposed', window.__tfPresetBadges && window.__tfPresetBadges.disposed === true);
+
+  // A mutation after dispose must not resurrect anything.
+  const ghost = document.createElement('div');
+  ghost.textContent = '先设防再开门：默认拒绝、最小授权、失败关闭。';
+  document.body.append(ghost);
+  await frame();
+  await frame();
+  check('no rows after dispose', document.querySelectorAll('[data-tf-preset-badges]').length === 0);
+
+  const failed = results.filter((r) => !r.ok);
+  const lines = results.map((r) => `${r.ok ? 'PASS' : 'FAIL'}  ${r.name}${r.detail ? `  [${r.detail}]` : ''}`);
+  const pre = document.getElementById('result');
+  pre.className = failed.length === 0 ? 'pass' : 'fail';
+  pre.textContent = `${failed.length === 0 ? 'ALL PASS' : `${failed.length} FAILED`}  (${results.length} checks)\n\n${lines.join('\n')}`;
+  window.__harnessResults = { total: results.length, failed: failed.length, results };
+})();
+</script>
+</body>
+</html>

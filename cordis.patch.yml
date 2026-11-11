@@ -4,7 +4,7 @@
       config:
         id: maoniang-search
         name: 猫娘·金融助理
-        description: 🐱 金融 · 📈 A股｜亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。
+        description: 亲切猫娘风格做严谨金融研究：核查 A 股、黄金、外汇与持仓数据，标清来源、时间和风险。
         order: 5
         plugins:
           - id: persona
@@ -85,7 +85,7 @@
       config:
         id: moon-lovers-xishi
         name: 西施 · 溪畔清影
-        description: 🌙 情绪 · 💬 关系｜清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。
+        description: 清冷含蓄，先细听情绪与关系里的边界，再陪你把难开口的话说得温柔而清楚。
         order: 6
         plugins:
           - id: persona
@@ -104,7 +104,7 @@
       config:
         id: moon-lovers-wang-zhaojun
         name: 王昭君 · 塞上明月
-        description: 🎯 目标 · 📅 规划｜沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。
+        description: 沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。
         order: 7
         plugins:
           - id: persona
@@ -123,7 +123,7 @@
       config:
         id: moon-lovers-diaochan
         name: 貂蝉 · 月下惊鸿
-        description: 💬 沟通 · ✨ 氛围｜灵动机敏，帮你斟酌聊天语气、润色消息，在尴尬或暧昧时留出恰好的接话空间。
+        description: 灵动机敏，帮你斟酌聊天语气、润色消息，在尴尬或暧昧时留出恰好的接话空间。
         order: 8
         plugins:
           - id: persona
@@ -142,7 +142,7 @@
       config:
         id: moon-lovers-yang-yuhuan
         name: 杨玉环 · 华清春暖
-        description: 🍲 饮食 · 🏡 日常｜温暖明媚，根据口味、食材和场景搭配菜单与日常安排，也记得你提过的小细节。
+        description: 温暖明媚，根据口味、食材和场景搭配菜单与日常安排，也记得你提过的小细节。
         order: 9
         plugins:
           - id: persona
@@ -161,7 +161,7 @@
       config:
         id: moon-lovers-pan-an
         name: 潘安 · 掷果盈车
-        description: 📜 文史 · 🏮 典故｜温润真挚，陪你读懂古人、典故与诗文，分清史实和传说，也把关心落在细节里。
+        description: 温润真挚，陪你读懂古人、典故与诗文，分清史实和传说，也把关心落在细节里。
         order: 10
         plugins:
           - id: persona
@@ -180,7 +180,7 @@
       config:
         id: moon-lovers-lanling-wang
         name: 兰陵王 · 面具之下
-        description: 💼 职场 · ⚖️ 决策｜外冷内柔，帮你厘清职场难题的目标、风险与选择，再给出简洁可行的行动步骤。
+        description: 外冷内柔，帮你厘清职场难题的目标、风险与选择，再给出简洁可行的行动步骤。
         order: 11
         plugins:
           - id: persona
@@ -199,7 +199,7 @@
       config:
         id: moon-lovers-wei-jie
         name: 卫玠 · 清羸如玉
-        description: 📚 学习 · 🔍 概念｜清淡温柔，循序渐进地讲清难懂概念，把资料整理成提纲、练习和复习步骤。
+        description: 清淡温柔，循序渐进地讲清难懂概念，把资料整理成提纲、练习和复习步骤。
         order: 12
         plugins:
           - id: persona
@@ -218,7 +218,7 @@
       config:
         id: moon-lovers-song-yu
         name: 宋玉 · 才冠楚襄
-        description: ✍️ 写作 · 🎭 修辞｜风雅机敏，按读者与场景构思、改写和润色文字，让表达有韵味也不失清楚。
+        description: 风雅机敏，按读者与场景构思、改写和润色文字，让表达有韵味也不失清楚。
         order: 13
         plugins:
           - id: persona
@@ -238,7 +238,7 @@
       config:
         id: zhuge-liang-market-research
         name: 诸葛亮 · 隆中调研
-        description: 🔭 调研 · 🏭 行业｜如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。
+        description: 如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。
         order: 14
         plugins:
           - id: persona
@@ -257,7 +257,7 @@
       config:
         id: wei-liao-strategy-planning
         name: 尉缭 · 经世筹策
-        description: 🎯 战略 · ✅ 落地｜把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。
+        description: 把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。
         order: 15
         plugins:
           - id: persona
@@ -277,7 +277,7 @@
       config:
         id: zhang-liang-cross-border-ecommerce
         name: 张良 · 海贸筹略
-        description: 🚢 跨境 · 📦 履约｜从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。
+        description: 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。
         order: 16
         plugins:
           - id: persona
@@ -297,7 +297,7 @@
       config:
         id: xing-xiaobiao-cross-border-ecommerce
         name: 星小彪 · 跨境电商分析
-        description: 🛒 电商 · 🏬 HD/LS｜只盯跨境电商经营，以 Home Depot、Lowe's 为主：先用 query-canvas 调取自有店铺与商品数据，再上网核实平台、竞品与合规信息，给出能落地的改法。
+        description: 只盯跨境电商经营，以 Home Depot、Lowe's 为主：先用 query-canvas 调取自有店铺与商品数据，再上网核实平台、竞品与合规信息，给出能落地的改法。
         order: 17
         plugins:
           - id: persona
@@ -341,7 +341,7 @@
       config:
         id: luban-desktop-core
         name: 鲁班 · 机关营造
-        description: 🦀 Rust · 💻 Tauri · 🔗 IPC｜以榫卯之准做桌面应用：先量后削，用契约与实测收口。
+        description: 以榫卯之准做桌面应用：先量后削，用契约与实测收口。
         order: 18
         plugins:
           - id: persona
@@ -376,7 +376,7 @@
       config:
         id: fengliao-mcp
         name: 冯嫽 · 西域通译
-        description: 🧩 MCP · 📡 JSON-RPC · 🔒 Scope｜持节通译：先协商能力，再校验入参、审计调用。
+        description: 持节通译：先协商能力，再校验入参、审计调用。
         order: 19
         plugins:
           - id: persona
@@ -413,7 +413,7 @@
       config:
         id: gu-kaizhi-vue-ui
         name: 顾恺之 · 传神写照
-        description: 🎨 Vue · 🧠 Pinia · ♿ A11y｜画清界面的每一态：状态、焦点、留白与可访问性。
+        description: 画清界面的每一态：状态、焦点、留白与可访问性。
         order: 20
         plugins:
           - id: persona
@@ -448,7 +448,7 @@
       config:
         id: mozi-security
         name: 墨子 · 守御非攻
-        description: 🛡️ ACL · 🔑 Keychain · 🧾 Audit｜先设防再开门：默认拒绝、最小授权、失败关闭。
+        description: 先设防再开门：默认拒绝、最小授权、失败关闭。
         order: 21
         plugins:
           - id: persona
@@ -482,7 +482,7 @@
       config:
         id: huang-daopo-delivery
         name: 黄道婆 · 织造流传
-        description: 📦 Delivery · 🧾 Sign · 🚀 Rollback｜把交付织成可重复的工序：门禁、构建、签名与分发。
+        description: 把交付织成可重复的工序：门禁、构建、签名与分发。
         order: 22
         plugins:
           - id: persona
@@ -515,7 +515,7 @@
       config:
         id: wang-zhenyi-observability
         name: 王贞仪 · 观象授时
-        description: 📈 Metrics · 🧭 Trace · ⚡ Perf｜先测再断：给性能定基线，给告警定口径。
+        description: 先测再断：给性能定基线，给告警定口径。
         order: 23
         plugins:
           - id: persona
