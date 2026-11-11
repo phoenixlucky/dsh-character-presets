@@ -52,24 +52,23 @@ window.__ModuleLoader__.load({
     const STYLE_ID = 'tf-preset-badges-style';
     const ROW_ATTR = 'data-tf-preset-badges';
     const AVATAR_ATTR = 'data-tf-preset-avatar';
-    /** The same description also shows up in menus, dropdowns, tooltips, and chat text. */
+    /**
+     * Where a preset row is rendered depends on the profile: the Agent presets
+     * settings page, the composer's preset dropdown, or both. The dropdown is a
+     * menu, so menus and listboxes are decorated like any other surface; only the
+     * conversation transcript (where a user may quote a description) and
+     * non-rendered nodes are skipped.
+     */
     const SKIP_SELECTOR = [
       '.tf-preset-badges',
-      // Non-rendered nodes: their text is markup or code, never a preset card.
+      // Non-rendered nodes: their text is markup or code, never a preset row.
       'script',
       'style',
       'template',
       'noscript',
       'title',
-      '[role="menu"]',
-      '[role="listbox"]',
-      '[role="menuitem"]',
-      '[role="option"]',
-      '[role="tooltip"]',
-      '[aria-hidden="true"]',
-      // Conversation slots hold the composer seat and every chat message: a user
-      // may quote a preset description there, and it is never a preset card.
-      '[data-slot^="conversation."]',
+      // Chat messages: quoting a preset description there is not a preset row.
+      '[data-slot^="conversation.chat."]',
     ].join(',');
 
     const CSS = `
@@ -124,6 +123,12 @@ window.__ModuleLoader__.load({
     const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     /** One pass over a subtree decides whether any preset text is present. */
     const NEEDLE_RE = new RegExp(PRESETS.map((preset) => escapeRegExp(preset.needle)).join('|'));
+    /** Name-only surfaces are detected by their own text, not by a description. */
+    const NAME_RE = new RegExp(PRESETS.map((preset) => escapeRegExp(preset.name)).join('|'));
+    /** Exact visible name → preset, for surfaces that render the name without the description. */
+    const BY_NAME = new Map(PRESETS.map((preset) => [preset.name, preset]));
+
+    const mentionsPreset = (text) => NEEDLE_RE.test(text) || NAME_RE.test(text);
 
     const hueOf = (label) => {
       let hash = 0;
@@ -247,32 +252,57 @@ window.__ModuleLoader__.load({
     let pendingRoot = null;
     let hasPendingRoot = false;
 
-    const ensureRow = (anchor, preset) => {
+    const ensureRow = (anchor, preset, placement = 'before') => {
       const current = state.get(preset.name);
       const row = current === undefined ? null : current.row;
       if (row !== null && row.isConnected) {
         // A second live anchor (guide dialog, duplicate card) must not steal the row.
         if (current.anchor !== anchor && current.anchor !== null && current.anchor.isConnected) return;
-        if (row.nextElementSibling === anchor) {
+        const inPlace = placement === 'before' ? row.nextElementSibling === anchor : row.previousElementSibling === anchor;
+        if (inPlace) {
           current.anchor = anchor;
           return;
         }
         row.remove();
       }
       const next = rowFor(preset);
-      anchor.before(next);
+      if (placement === 'before') anchor.before(next);
+      else anchor.after(next);
       state.set(preset.name, { row: next, anchor });
       attachAvatar(next, preset);
     };
 
-    const decorate = (leaf) => {
-      if (leaf.childElementCount !== 0) return;
-      if (leaf.closest(SKIP_SELECTOR) !== null) return;
+    /**
+     * Two matching paths, mirroring how the Harness renders presets:
+     * - a surface with a description (settings card, dropdown item) matches on the
+     *   description slice and puts the row right before that text;
+     * - a surface with the name only (the composer's preset seat) matches the exact
+     *   visible name and puts the row right after it.
+     *
+     * The description pass runs over the whole subtree before the name pass, so a
+     * card that renders both still gets its row between the name and the text.
+     */
+    const isCandidate = (leaf) => leaf.childElementCount === 0 && leaf.closest(SKIP_SELECTOR) === null;
+
+    const decorateDescription = (leaf) => {
+      if (!isCandidate(leaf)) return;
       const text = leaf.textContent;
       if (typeof text !== 'string' || text.length < 8) return;
       const preset = entryFor(text);
-      if (preset === null) return;
-      ensureRow(leaf, preset);
+      if (preset !== null) ensureRow(leaf, preset, 'before');
+    };
+
+    const decorateName = (leaf) => {
+      if (!isCandidate(leaf)) return;
+      const text = leaf.textContent;
+      if (typeof text !== 'string') return;
+      const trimmed = text.trim();
+      if (trimmed.length < 2) return;
+      const preset = BY_NAME.get(trimmed);
+      if (preset === undefined) return;
+      const current = state.get(preset.name);
+      if (current !== undefined && current.row.isConnected) return;
+      ensureRow(leaf, preset, 'after');
     };
 
     /** Leaves of a subtree, collected without allocating an intermediate array of every element. */
@@ -315,11 +345,12 @@ window.__ModuleLoader__.load({
       if (scope === null || scope === undefined) return;
       if (scope !== document.body) {
         const text = scope.textContent;
-        if (typeof text !== 'string' || !NEEDLE_RE.test(text)) return;
+        if (typeof text !== 'string' || !mentionsPreset(text)) return;
       }
       const leaves = [];
       collectLeaves(scope, leaves);
-      for (const leaf of leaves) decorate(leaf);
+      for (const leaf of leaves) decorateDescription(leaf);
+      for (const leaf of leaves) decorateName(leaf);
       updateDebug();
     };
 
@@ -353,7 +384,7 @@ window.__ModuleLoader__.load({
       for (const record of records) {
         if (record.type === 'characterData') {
           const text = record.target.data;
-          if (typeof text !== 'string' || text === '' || !NEEDLE_RE.test(text)) continue;
+          if (typeof text !== 'string' || text === '' || !mentionsPreset(text)) continue;
           if (inSkippedRegion(record.target)) continue;
           schedule(null);
           return;
@@ -362,7 +393,7 @@ window.__ModuleLoader__.load({
           const type = node.nodeType;
           if (type !== 1 && type !== 3) continue;
           const text = node.textContent;
-          if (typeof text !== 'string' || text === '' || !NEEDLE_RE.test(text)) continue;
+          if (typeof text !== 'string' || text === '' || !mentionsPreset(text)) continue;
           if (inSkippedRegion(node)) continue;
           schedule(type === 1 ? node : null);
           return;

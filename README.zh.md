@@ -88,8 +88,9 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
 - `locale/*.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale/*.json`；缺失时会退回显示包名。
 - 预设卡片只渲染 name 与 description 两个字段；preset 的配置项只有 `id`、`name`、`description`、`order`、`plugins`。所以 description 里不写任何标记或 emoji 标签，领域标签统一由 `client.js` 的 `PRESETS[].tags` 提供。
-- `client.js` 这一 Client 模块在每张预设卡片的名称与描述之间插入一行：头像加若干胶囊标签。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
-- 匹配只用描述里的一段稳定文字（`PRESETS[].needle`），不依赖 CSS 类名或完整名称，因为同一份名称与描述也会出现在输入框旁的预设座位与下拉菜单里。`role="menu"`、`role="listbox"`、`role="menuitem"`、`role="option"`、`role="tooltip"`、`aria-hidden="true"`、`[data-slot^="conversation."]`，以及 `script`、`style`、`template`、`noscript`、`title` 内的匹配都会被跳过。
+- `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间，只有名称的界面（输入框旁的预设座位）插在名称之后。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
+- 匹配有两条路径：渲染了描述的界面（Agent 预设卡片、预设下拉项）用描述里的一段稳定文字（`PRESETS[].needle`）匹配，行插在该文本之前；只渲染名称的界面（输入框旁的预设座位）用完整可见名称（`PRESETS[].name`）匹配，行插在名称之后。描述优先，所以同时显示名称与描述的卡片仍把行放在两者之间。不依赖任何 CSS 类名。
+- 只跳过两类区域：聊天记录（`[data-slot^="conversation.chat."]`，用户可能在那里引用描述）与不参与渲染的节点（`script`、`style`、`template`、`noscript`、`title`）。菜单、列表框与 `aria-hidden` 子树照常装饰——有些 profile 关掉了设置页，预设只在输入框下拉里出现。
 - 模块只插入自己的节点，不改写、不重新挂载、不改宿主样式，也不会撑宽设置面板；重渲染时复用原行（描述元素被替换则改挂到新元素），不会叠加重复行；`ctx.effect` 卸载时取消待执行的帧、移除全部行与头像与样式，并释放全局标记。若已有其他 bundle 占用了徽章，第二份只打一条警告，保持静默。
 - 打开预设列表后可在控制台执行 `window.__tfPresetBadges` 查看 `{ package, rows, avatars, missing, disposed }`。`missing` 列出没找到卡片的预设——宿主标记变动就是这个样子，此时该行退回「名称 + 纯文本描述」，不显示任何标签。
 - 改名或改写描述时要同步 `PRESETS`：needle 必须仍是 `description` 的原样片段，否则那张卡片会失去徽章。`test/badge-harness.html` 在普通浏览器页面里复现卡片、座位、下拉、重渲染与卸载路径，逐条打印 PASS/FAIL。

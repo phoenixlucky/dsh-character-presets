@@ -42,6 +42,7 @@
   </section>
 
   <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton" aria-expanded="false"><span class="seatLabel">尉缭 · 经世筹策</span></button></div>
+  <div class="seat" data-slot="conversation.composer.dock"><button class="seatButton" aria-expanded="false"><span class="seatLabel">黄道婆 · 织造流传</span></button></div>
 
   <div data-slot="conversation.chat.flow" id="chat">
     <div data-slot="conversation.chat.node" class="chatMessage">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</div>
@@ -49,8 +50,8 @@
 
   <div role="menu" class="menu" id="menu">
     <div role="menuitem" class="item">
-      <span class="itemName">尉缭 · 经世筹策</span>
-      <span class="itemDesc">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</span>
+      <span class="itemName">王昭君 · 塞上明月</span>
+      <span class="itemDesc">沉稳坚韧，陪你把人生目标拆成阶段计划，结合时间与现实条件稳步推进。</span>
     </div>
   </div>
 
@@ -67,6 +68,17 @@
     window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 16);
     window.cancelAnimationFrame = (id) => clearTimeout(id);
   }
+  // A failing check must not leave the page stuck on "running…".
+  const report = (title, detail) => {
+    const pre = document.getElementById('result');
+    if (pre) pre.textContent = `${title}\n${detail}`;
+  };
+  window.addEventListener('unhandledrejection', (event) => {
+    report('HARNESS REJECTION', (event.reason && event.reason.stack) || String(event.reason));
+  });
+  window.addEventListener('error', (event) => {
+    report('HARNESS ERROR', `${event.message} @ ${event.filename}:${event.lineno}`);
+  });
   // 1x1 transparent PNG, used to exercise the successful avatar path.
   window.__HARNESS_ASSET = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
   window.__HARNESS_FACTORY = null;
@@ -117,9 +129,11 @@
   check('one row per card', weiliao.length === 1 && xing.length === 1, `${weiliao.length}/${xing.length}`);
   check('row sits before the description', weiliao[0] && weiliao[0].nextElementSibling === descOf('weiliao'));
   check('row is inside the card', weiliao[0] && cardOf('weiliao').contains(weiliao[0]));
-  check('no row inside role=menu', document.querySelector('[role="menu"] [data-tf-preset-badges]') === null);
-  check('no row inside a chat message', document.querySelector('[data-slot^="conversation."] [data-tf-preset-badges]') === null);
-  check('no row inside aria-hidden', document.querySelector('[aria-hidden="true"] [data-tf-preset-badges]') === null);
+  check('dropdown menu item gets a row', document.querySelectorAll('#menu [data-tf-preset-badges]').length === 1, document.querySelectorAll('#menu [data-tf-preset-badges]').length);
+  const seatRow = rowsFor('黄道婆 · 织造流传');
+  check('name-only surface gets a row after the name', seatRow.length === 1 && seatRow[0].previousElementSibling && seatRow[0].previousElementSibling.className === 'seatLabel', seatRow.length);
+  check('no row inside a chat message', document.querySelector('[data-slot^="conversation.chat."] [data-tf-preset-badges]') === null);
+  check('hidden copy does not steal the row', rowsFor('尉缭 · 经世筹策').length === 1 && cardOf('weiliao').contains(rowsFor('尉缭 · 经世筹策')[0]));
   check('chips rendered', weiliao[0] && [...weiliao[0].querySelectorAll('i')].map((c) => c.textContent).join(',') === '战略,落地');
 
   await frame();
@@ -173,7 +187,18 @@
   const debug = window.__tfPresetBadges || {};
   const rowDump = [...document.querySelectorAll('[data-tf-preset-badges]')].map((row) => `${row.getAttribute('data-tf-preset-badges')}<-${row.parentElement && row.parentElement.tagName}`);
   check('debug hook reports rows', debug.rows >= 3, `${debug.rows} :: ${rowDump.join(' ;; ')}`);
-  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 16, debug.missing && debug.missing.join('|'));
+  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 14, debug.missing && debug.missing.join('|'));
+
+  // A name-only surface rendered after boot must still be picked up.
+  const lateSeat = document.createElement('div');
+  lateSeat.className = 'seat';
+  lateSeat.setAttribute('data-slot', 'conversation.composer.dock');
+  lateSeat.innerHTML = '<button class="seatButton"><span class="seatLabel">冯嫽 · 西域通译</span></button>';
+  document.body.append(lateSeat);
+  await frame();
+  await frame();
+  const lateSeatRow = rowsFor('冯嫽 · 西域通译');
+  check('late name-only surface gets a row', lateSeatRow.length === 1 && lateSeatRow[0].previousElementSibling && lateSeatRow[0].previousElementSibling.className === 'seatLabel', lateSeatRow.length);
 
   // Full roster: every preset description from cordis.patch.yml must decorate.
   const ROSTER = [
