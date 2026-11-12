@@ -1,0 +1,8 @@
+# Pack artifacts from `npm pack` / `npm publish` runs
+*.tgz
+
+# Local probe bundle, not published and not part of the release history
+packages/
+
+# Installed trees
+node_modules/
