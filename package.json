@@ -1,6 +1,6 @@
 {
   "name": "@tinyforge/dsh-character-presets",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -49,17 +49,17 @@
     "assets/preset-icons/wang-zhenyi-observability.webp"
   ],
   "dependencies": {
-    "@deepseek-ai/dsh-agent-preset": "0.2.2-rc.1",
-    "@deepseek-ai/dsh-persona": "0.2.2-rc.1",
-    "@deepseek-ai/dsh-time-context": "0.2.2-rc.1"
+    "@deepseek-ai/dsh-agent-preset": ">=0.2.2-rc.1 <0.3.0-0",
+    "@deepseek-ai/dsh-persona": ">=0.2.2-rc.1 <0.3.0-0",
+    "@deepseek-ai/dsh-time-context": ">=0.2.2-rc.1 <0.3.0-0"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "~4.1.0",
     "@deepseek-ai/cordis-plugin-loader": "~1.1.0",
-    "@deepseek-ai/dsh-agent-preset-registry": "0.2.2-rc.1"
+    "@deepseek-ai/dsh-agent-preset-registry": ">=0.2.2-rc.1 <0.3.0-0"
   },
   "engines": {
-    "dsh": "0.2.2-rc.1"
+    "dsh": ">=0.2.2-rc.1 <0.3.0-0"
   },
   "dsh": {
     "bundle": {

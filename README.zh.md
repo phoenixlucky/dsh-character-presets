@@ -95,7 +95,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - 模块只插入自己的节点，不改写、不重新挂载、不改宿主样式，也不会撑宽设置面板；重渲染时复用原行（描述元素被替换则改挂到新元素），不会叠加重复行；`ctx.effect` 卸载时取消待执行的帧、移除全部行与头像与样式，并释放全局标记。若已有其他 bundle 占用了徽章，第二份只打一条警告，保持静默。
 - 打开预设列表后可在控制台执行 `window.__tfPresetBadges` 查看 `{ package, rows, avatars, missing, disposed }`。`missing` 列出没找到卡片的预设——宿主标记变动就是这个样子，此时该行退回「名称 + 纯文本描述」，不显示任何标签。
 - 改名或改写描述时要同步 `PRESETS`：needle 必须仍是 `description` 的原样片段，否则那张卡片会失去徽章。`test/badge-harness.html` 在普通浏览器页面里复现卡片、触发器、下拉、重渲染与卸载路径，逐条打印 PASS/FAIL；`test/seat-repro.html` 按宿主标记重建真实的输入框座位并连续切换预设，也就是 v1.6.2 修掉的回归。
-- 本 bundle 面向 DSH 0.2.2-rc.1，并固定匹配的 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona` 与 `@deepseek-ai/dsh-time-context` 版本；DSH runtime 升级时需同步更新。
+- 本 bundle 面向 DSH 0.2.2-rc.1，接受 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona` 与 `@deepseek-ai/dsh-time-context` 从 `0.2.2-rc.1` 起、`0.3.0` 之前的匹配版本，因此 0.2 内的补丁与 rc 升级无需重新发布本包。DSH runtime 进入新的次版本时，需要连同 `engines.dsh` 一起放宽这些区间。
 - 此 bundle 不会安装或配置浏览器、研究或账户连接；只有在 Web profile 中配置好的工具才能使用。编程大师预设同样不安装 Rust、Node 或打包工具。
 - 头像文件位于 `assets/preset-icons/<icon>.webp`，由 Harness 的资源路由提供；这要求 `package.json` 里有 `"./assets/*": "./assets/*"` 导出、`files` 里含对应文件。`files` 故意逐个列出 19 个图标：若只写目录，仓库里的 `contact-sheet.webp`（总览图，仅供仓库）也会被打包发布。因此新增图标时还要在 `files` 里补一行。文件缺失、返回 404 或宿主没有该路由时，退回首字圆章而不是破图。该路由在 Harness 启动时解析，因此新装或改动过的副本需要重启 Harness 才会出现头像。
 - `locale/` 覆盖 Harness 列插件时支持的 8 种语言：`en`、`zh`、`de`、`es`、`fr`、`ja`、`pt`、`ru`。缺哪种语言，插件列表就退回显示包名；因此要保留 `locale/*.json` 导出、`files` 中的 `locale/*.json`，并让每个文件都用同一套 `meta.title` / `meta.description` 键。
