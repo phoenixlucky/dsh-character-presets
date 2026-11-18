@@ -6,3 +6,7 @@ packages/
 
 # Installed trees
 node_modules/
+
+# Local spec and memory files: per-machine, never published or committed
+AGENTS.md
+MEMORY.md
