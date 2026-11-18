@@ -84,6 +84,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -111,6 +115,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-zhaojun-life-planning
@@ -137,6 +145,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-diaochan-communication
@@ -163,6 +175,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-yuhuan-food-life
@@ -189,6 +205,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-panan-classics
@@ -215,6 +235,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-lanling-workplace
@@ -241,6 +265,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-weijie-study
@@ -267,6 +295,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-songyu-writing
@@ -293,6 +325,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -320,6 +356,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-weiliao-strategy
@@ -346,6 +386,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -373,6 +417,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -424,6 +472,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -467,6 +519,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-fengliao-mcp
@@ -511,6 +567,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-gukaizhi-vue-ui
@@ -553,6 +613,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-mozi-security
@@ -594,6 +658,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-huangdaopo-delivery
@@ -634,6 +702,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-wangzhenyi-observability
@@ -675,6 +747,10 @@
                 - 收尾：任务结束把该记的写回文件，再在回复末尾用一行说明「读了哪些文件、更新了什么」；没有就写「无」。
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
                 - 不入库：AGENTS.md 与 MEMORY.md 按本地文件对待——新建或首次写入时加入工作区 .gitignore（没有就建一个）；若它们已被版本库跟踪，不擅自 git rm 或改写历史，先说明现状与影响并等确认。团队要共享规范时只把 AGENTS.md 移出 ignore，并在回复中点明这一取舍。
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
