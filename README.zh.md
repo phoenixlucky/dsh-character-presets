@@ -66,6 +66,8 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 
 每个预设末尾都加了一段 `【记忆与规范】`，让角色开工前先读工作区的规范文件与记忆文件、收尾时写回：先读 `AGENTS.md` 与 `MEMORY.md`（不存在时按项目既有约定找 `docs/`、`.dsh/` 下的同类文件），把它们当作既有前提但不覆盖用户当前要求；本领域的稳定事实追加进记忆文件，新的可复用约定写进规范文件并注明适用范围与日期；任务结束时用一行说明读了哪些文件、更新了什么。这两个文件名只是默认约定，工作区若用别的路径，直接改这段文字即可。
 
+每个预设还会挂上两个 Harness 技能插件，让角色能列出可用技能并按需加载：`@deepseek-ai/dsh-skill-filesystem` 扫描 `E:/home/dsh-skills-wj` 下的 `SKILL.md`（项目目录、`~/.dsh/skills` 与应用自带技能根仍然生效），`@deepseek-ai/dsh-tool-skill` 提供 `skill` 工具把选中的技能读进上下文。该目录只是本机默认值，不存在也不会报错，只是没有 bundled 技能；装好后把 `cordis.patch.yml` 里的 `bundledSkillDir` 指向自己的目录，或删掉这两行插件，即可换用别的技能。
+
 角色头像均为 512 × 512 WebP，风格统一，19 个预设现在都有图标。preset 配置里没有图标字段，因此头像由 Client 模块从本包自己的 `/plugins/@tinyforge/dsh-character-presets/assets/preset-icons/<icon>.webp` 路由绘制；文件缺失、返回 404 或宿主没有该路由时退回同风格的首字圆章，不会出现破图。想只看标签不看头像，可在页面加载前于控制台设置 `window.__tfPresetAvatars = false`。
 
 <a id="programming-masters"></a>
@@ -97,9 +99,10 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - 模块只插入自己的节点，不改写、不重新挂载、不改宿主样式，也不会撑宽设置面板；重渲染时复用原行（描述元素被替换则改挂到新元素），不会叠加重复行；`ctx.effect` 卸载时取消待执行的帧、移除全部行与头像与样式，并释放全局标记。若已有其他 bundle 占用了徽章，第二份只打一条警告，保持静默。
 - 打开预设列表后可在控制台执行 `window.__tfPresetBadges` 查看 `{ package, rows, avatars, missing, disposed }`。`missing` 列出没找到卡片的预设——宿主标记变动就是这个样子，此时该行退回「名称 + 纯文本描述」，不显示任何标签。
 - 改名或改写描述时要同步 `PRESETS`：needle 必须仍是 `description` 的原样片段，否则那张卡片会失去徽章。`test/badge-harness.html` 在普通浏览器页面里复现卡片、触发器、下拉、重渲染与卸载路径，逐条打印 PASS/FAIL；`test/seat-repro.html` 按宿主标记重建真实的输入框座位并连续切换预设，也就是 v1.6.2 修掉的回归。
-- 本 bundle 面向 DSH 0.2.2-rc.1，接受 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona` 与 `@deepseek-ai/dsh-time-context` 从 `0.2.2-rc.1` 起、`0.3.0` 之前的匹配版本，因此 0.2 内的补丁与 rc 升级无需重新发布本包。DSH runtime 进入新的次版本时，需要连同 `engines.dsh` 一起放宽这些区间。
-- 这三个 Harness 包只能声明为**可选 peer，不能声明为 dependencies**：runtime 自己已经提供它们；一旦作为依赖安装，使用 `nodeLinker: hoisted` 的 profile 会把插件自带的旧副本提升到 `node_modules/@deepseek-ai`，预设行便解析到那份副本。旧版 `@deepseek-ai/dsh-agent-preset` 声明了精确的 `@deepseek-ai/dsh-agent-preset-registry` peer，于是 DSH 的版本闸门会把每一行标记为 `incompatible-version` 并禁用，预设列表因此为空——这正是 1.6.3 在 0.2.2-rc.2 上"整个不能用"的原因。请把它们放在 `peerDependencies` 并配 `peerDependenciesMeta.optional`，让任何 profile 都不会安装自己的副本。
+- 本 bundle 面向 DSH 0.2.2-rc.1，接受 `@deepseek-ai/dsh-agent-preset`、`@deepseek-ai/dsh-persona`、`@deepseek-ai/dsh-time-context`、`@deepseek-ai/dsh-skill-filesystem` 与 `@deepseek-ai/dsh-tool-skill` 从 `0.2.2-rc.1` 起、`0.3.0` 之前的匹配版本，因此 0.2 内的补丁与 rc 升级无需重新发布本包。DSH runtime 进入新的次版本时，需要连同 `engines.dsh` 一起放宽这些区间。
+- 这五个 Harness 包只能声明为**可选 peer，不能声明为 dependencies**：runtime 自己已经提供它们；一旦作为依赖安装，使用 `nodeLinker: hoisted` 的 profile 会把插件自带的旧副本提升到 `node_modules/@deepseek-ai`，预设行便解析到那份副本。旧版 `@deepseek-ai/dsh-agent-preset` 声明了精确的 `@deepseek-ai/dsh-agent-preset-registry` peer，于是 DSH 的版本闸门会把每一行标记为 `incompatible-version` 并禁用，预设列表因此为空——这正是 1.6.3 在 0.2.2-rc.2 上"整个不能用"的原因。请把它们放在 `peerDependencies` 并配 `peerDependenciesMeta.optional`，让任何 profile 都不会安装自己的副本。
 - `【记忆与规范】` 这段在 19 个 persona prefix 里逐字重复，是刻意为之：preset 配置只有 `id`、`name`、`description`、`order`、`plugins`，无法引用共享片段。每个角色只有 `记什么` 一行不同。改动共用措辞时要一并同步其余 18 处——只改一半会让各角色读写记忆文件的规则不一致，比不写更糟。
+- 每个预设的 `plugins` 里都追加了 `skill-filesystem` 与 `tool-skill`：前者为该角色提供技能目录，后者提供加载技能所需的 `skill` 工具。目录是按预设各自扫描的，所以每个角色看到的根就是它自己 provider 的根。`bundledSkillDir` 是字面量而非模板，runtime 用 `path.resolve` 解析，因此要写绝对路径并逐机修改；目录不存在会静默跳过，`includeDefaultRoots` 保持开启，项目与 `~/.dsh/skills` 仍会被扫描。这两个包同样只能放在可选 peer 里：runtime 已经自带。
 - 此 bundle 不会安装或配置浏览器、研究或账户连接；只有在 Web profile 中配置好的工具才能使用。编程大师预设同样不安装 Rust、Node 或打包工具。
 - 头像文件位于 `assets/preset-icons/<icon>.webp`，由 Harness 的资源路由提供；这要求 `package.json` 里有 `"./assets/*": "./assets/*"` 导出、`files` 里含对应文件。`files` 故意逐个列出 19 个图标：若只写目录，仓库里的 `contact-sheet.webp`（总览图，仅供仓库）也会被打包发布。因此新增图标时还要在 `files` 里补一行。文件缺失、返回 404 或宿主没有该路由时，退回首字圆章而不是破图。该路由在 Harness 启动时解析，因此新装或改动过的副本需要重启 Harness 才会出现头像。
 - `locale/` 覆盖 Harness 列插件时支持的 8 种语言：`en`、`zh`、`de`、`es`、`fr`、`ja`、`pt`、`ru`。缺哪种语言，插件列表就退回显示包名；因此要保留 `locale/*.json` 导出、`files` 中的 `locale/*.json`，并让每个文件都用同一套 `meta.title` / `meta.description` 键。
