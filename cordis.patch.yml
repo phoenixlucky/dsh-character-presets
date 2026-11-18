@@ -85,12 +85,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-xishi-relationship
       name: '@deepseek-ai/dsh-agent-preset'
@@ -117,12 +111,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-zhaojun-life-planning
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -148,12 +136,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-diaochan-communication
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -179,12 +161,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-yuhuan-food-life
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -210,12 +186,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-panan-classics
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -241,12 +211,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-lanling-workplace
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -272,12 +236,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-weijie-study
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -303,12 +261,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-songyu-writing
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -334,12 +286,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-zhuge-market-research
       name: '@deepseek-ai/dsh-agent-preset'
@@ -366,12 +312,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-weiliao-strategy
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -397,12 +337,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-zhangliang-cross-border
       name: '@deepseek-ai/dsh-agent-preset'
@@ -429,12 +363,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-xingxiaobiao-cross-border
       name: '@deepseek-ai/dsh-agent-preset'
@@ -485,12 +413,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-luban-desktop-core
       name: '@deepseek-ai/dsh-agent-preset'
@@ -533,12 +455,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-fengliao-mcp
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -582,12 +498,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-gukaizhi-vue-ui
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -629,12 +539,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-mozi-security
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -675,12 +579,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-huangdaopo-delivery
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -720,12 +618,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
     - id: preset-wangzhenyi-observability
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -766,12 +658,6 @@
                 - 边界：只写本工作区可写路径；密钥、令牌、密码与隐私原文不写入文件，只写其位置或名称；不确定是否该记录时先记一条，并在回复中说明待确认。
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
-          - id: skill-filesystem
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              bundledSkillDir: 'E:/home/dsh-skills-wj'
-          - id: tool-skill
-            name: '@deepseek-ai/dsh-tool-skill'
 - insert:
     - id: preset-badges-client
       name: '@tinyforge/dsh-character-presets'
