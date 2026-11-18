@@ -90,6 +90,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 ## 实现说明
 
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
+- 预设行要显式给出插件要求的配置：`@deepseek-ai/dsh-tool-fs-search` 把 `sampleOverCapGlobResults` 声明为必填且无默认值，因此每个预设都写 `sampleOverCapGlobResults: false`。漏掉它会让整个预设挂载失败（`invalid config: $.sampleOverCapGlobResults missing required value`），表现是该预设整体不可用，而不只是少了 `glob` 与 `grep`。
 - `locale/*.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale/*.json`；缺失时会退回显示包名。
 - 预设卡片只渲染 name 与 description 两个字段；preset 的配置项只有 `id`、`name`、`description`、`order`、`plugins`。所以 description 里不写任何标记或 emoji 标签，领域标签统一由 `client.js` 的 `PRESETS[].tags` 提供。
 - `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间；输入框预设下拉的每一项里插在名称与描述之间。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。

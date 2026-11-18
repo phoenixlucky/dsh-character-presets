@@ -88,6 +88,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -119,6 +121,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-zhaojun-life-planning
@@ -149,6 +153,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-diaochan-communication
@@ -179,6 +185,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-yuhuan-food-life
@@ -209,6 +217,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-panan-classics
@@ -239,6 +249,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-lanling-workplace
@@ -269,6 +281,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-weijie-study
@@ -299,6 +313,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-songyu-writing
@@ -329,6 +345,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -360,6 +378,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-weiliao-strategy
@@ -390,6 +410,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -421,6 +443,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -476,6 +500,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
@@ -523,6 +549,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-fengliao-mcp
@@ -571,6 +599,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-gukaizhi-vue-ui
@@ -617,6 +647,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-mozi-security
@@ -662,6 +694,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-huangdaopo-delivery
@@ -706,6 +740,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
     - id: preset-wangzhenyi-observability
@@ -751,6 +787,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
 - insert:
