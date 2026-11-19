@@ -1,6 +1,6 @@
 {
   "name": "@tinyforge/dsh-character-presets",
-  "version": "1.9.2",
+  "version": "1.10.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/phoenixlucky/dsh-character-presets/issues"
   },
-  "description": "Character presets with WebP icons and colored badge chips for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, cross-border ecommerce, and software engineering roles (Tauri/Rust, MCP, Vue, security, delivery, observability)",
+  "description": "Character presets with WebP icons and colored badge chips for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, cross-border ecommerce, web crawling, and software engineering roles (Tauri/Rust, MCP, Vue, security, delivery, observability, DSH plugin authoring)",
   "icon": "icon.webp",
   "type": "module",
   "exports": {
@@ -42,6 +42,8 @@
     "assets/preset-icons/zhuge-liang-market-research.webp",
     "assets/preset-icons/wei-liao-strategy-planning.webp",
     "assets/preset-icons/zhang-liang-cross-border-ecommerce.webp",
+    "assets/preset-icons/xu-xiake-web-crawler.webp",
+    "assets/preset-icons/bi-sheng-dsh-plugin.webp",
     "assets/preset-icons/hai-lian-cross-border-ecommerce.webp",
     "assets/preset-icons/luban-desktop-core.webp",
     "assets/preset-icons/fengliao-mcp.webp",
@@ -59,9 +61,15 @@
     "@deepseek-ai/dsh-time-context": ">=0.2.2-rc.1 <0.3.0-0"
   },
   "peerDependenciesMeta": {
-    "@deepseek-ai/dsh-agent-preset": { "optional": true },
-    "@deepseek-ai/dsh-persona": { "optional": true },
-    "@deepseek-ai/dsh-time-context": { "optional": true }
+    "@deepseek-ai/dsh-agent-preset": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-persona": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-time-context": {
+      "optional": true
+    }
   },
   "engines": {
     "dsh": ">=0.2.2-rc.1 <0.3.0-0"

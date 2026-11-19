@@ -53,6 +53,8 @@ window.__ModuleLoader__.load({
       { name: '墨子 · 守御非攻', tags: ['ACL', 'Keychain', 'Audit'], needle: '先设防再开门', icon: 'mozi-security' },
       { name: '黄道婆 · 织造流传', tags: ['Delivery', 'Sign', 'Rollback'], needle: '把交付织成可重复的工序', icon: 'huang-daopo-delivery' },
       { name: '王贞仪 · 观象授时', tags: ['Metrics', 'Trace', 'Perf'], needle: '先测再断：给性能定基线', icon: 'wang-zhenyi-observability' },
+      { name: '徐霞客 · 遍历山川', tags: ['采集', '解析', '合规'], needle: '遍历采集：先看目标页面与合规边界', icon: 'xu-xiake-web-crawler' },
+      { name: '毕昇 · 活字排版', tags: ['插件', '补丁', '验证'], needle: '活字排版式做 DSH 插件', icon: 'bi-sheng-dsh-plugin' },
     ];
 
     const STYLE_ID = 'tf-preset-badges-style';
@@ -75,6 +77,18 @@ window.__ModuleLoader__.load({
       'title',
       // Chat messages: quoting a preset description there is not a preset row.
       '[data-slot^="conversation.chat."]',
+      // Documents are prose, not preset rows: a README or changelog quotes every
+      // description and would otherwise collect one avatar-plus-chips row per
+      // table row, in the middle of the text. Cards and menu items are lists and
+      // menu popups, never tables or preformatted text.
+      'table',
+      'pre',
+      'code',
+      '.markdown-body',
+      '[data-markdown]',
+      '[data-slot^="file."]',
+      '[data-slot^="document."]',
+      '[data-slot^="markdown"]',
     ].join(',');
 
     const CSS = `

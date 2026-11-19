@@ -137,6 +137,15 @@
   const seatRow = rowsFor('黄道婆 · 织造流传');
   check('compact name-only trigger is not decorated', seatRow.length === 0 && seatButton.querySelector('[data-tf-preset-badges]') === null, seatRow.length);
   check('no row inside a chat message', document.querySelector('[data-slot^="conversation.chat."] [data-tf-preset-badges]') === null);
+  // Documents quote every description; a README table row must stay plain text.
+  const docTable = document.createElement('table');
+  const docRow = document.createElement('tr');
+  docRow.innerHTML = '<td>王贞仪 · 观象授时</td><td>先测再断：给性能定基线，给告警定口径。</td>';
+  docTable.append(docRow);
+  document.body.append(docTable);
+  await frame();
+  await frame();
+  check('no row inside a document table', docTable.querySelector('[data-tf-preset-badges]') === null && rowsFor('王贞仪 · 观象授时').length === 0);
   check('hidden copy does not steal the row', rowsFor('尉缭 · 经世筹策').length === 1 && cardOf('weiliao').contains(rowsFor('尉缭 · 经世筹策')[0]));
   check('chips rendered', weiliao[0] && [...weiliao[0].querySelectorAll('i')].map((c) => c.textContent).join(',') === '战略,落地');
 
@@ -193,7 +202,7 @@
   check('debug hook reports rows', debug.rows >= 3, `${debug.rows} :: ${rowDump.join(' ;; ')}`);
   // Four surfaces have rows (尉缭 card, 海莲 card, 墨子 card, the menu item); the
   // two seat buttons and the hidden copy must not add any.
-  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 15, debug.missing && debug.missing.length);
+  check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 17, debug.missing && debug.missing.length);
 
   // Selecting presets re-labels the same seat button. Every pick used to strand
   // the row it had matched there, piling chips onto the composer.
@@ -227,6 +236,8 @@
     ['墨子 · 守御非攻', '先设防再开门：默认拒绝、最小授权、失败关闭。'],
     ['黄道婆 · 织造流传', '把交付织成可重复的工序：门禁、构建、签名与分发。'],
     ['王贞仪 · 观象授时', '先测再断：给性能定基线，给告警定口径。'],
+    ['徐霞客 · 遍历山川', '遍历采集：先看目标页面与合规边界，再写可重跑、可断点续抓的管线，逐字段留源。'],
+    ['毕昇 · 活字排版', '活字排版式做 DSH 插件：先读宿主契约，再让每一行可挂载、可复验、可回滚。'],
   ];
   const roster = document.createElement('ul');
   roster.className = 'cards';
@@ -256,7 +267,7 @@
   await frame();
   await frame();
   const decoratedRoster = ROSTER.filter(([name]) => rowsFor(name).length === 1).length;
-  check('full roster decorates all 19 presets', decoratedRoster === ROSTER.length, `${decoratedRoster}/${ROSTER.length}`);
+  check('full roster decorates all 21 presets', decoratedRoster === ROSTER.length, `${decoratedRoster}/${ROSTER.length}`);
   check('full roster reports no missing preset', window.__tfPresetBadges && window.__tfPresetBadges.missing.length === 0, JSON.stringify(window.__tfPresetBadges && window.__tfPresetBadges.missing));
 
   disposeA();
