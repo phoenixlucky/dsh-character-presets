@@ -32,9 +32,9 @@
           <div class="cardDesc">把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。</div>
         </button>
       </li>
-      <li class="card" data-test-card="xingxiaobiao">
-        <button class="cardMain" aria-label="Select: 星小彪 · 跨境电商分析">
-          <div class="cardHead"><div class="cardIdentity"><span class="cardName">星小彪 · 跨境电商分析</span></div></div>
+      <li class="card" data-test-card="hailian">
+        <button class="cardMain" aria-label="Select: 海莲 · 跨境电商分析">
+          <div class="cardHead"><div class="cardIdentity"><span class="cardName">海莲 · 跨境电商分析</span></div></div>
           <div class="cardDesc">只盯跨境电商经营，以 Home Depot、Lowe's 为主：先调取自有店铺数据，再上网核实平台与合规信息。</div>
         </button>
       </li>
@@ -125,8 +125,8 @@
   await frame();
 
   const weiliao = rowsFor('尉缭 · 经世筹策');
-  const xing = rowsFor('星小彪 · 跨境电商分析');
-  check('one row per card', weiliao.length === 1 && xing.length === 1, `${weiliao.length}/${xing.length}`);
+  const hailian = rowsFor('海莲 · 跨境电商分析');
+  check('one row per card', weiliao.length === 1 && hailian.length === 1, `${weiliao.length}/${hailian.length}`);
   check('row sits before the description', weiliao[0] && weiliao[0].nextElementSibling === descOf('weiliao'));
   check('row is inside the card', weiliao[0] && cardOf('weiliao').contains(weiliao[0]));
   check('dropdown menu item gets a row', document.querySelectorAll('#menu [data-tf-preset-badges]').length === 1, document.querySelectorAll('#menu [data-tf-preset-badges]').length);
@@ -144,9 +144,9 @@
   const avatarOf = (row) => row && row.querySelector('[data-tf-preset-avatar]');
   const imageReady = await waitFor(() => avatarOf(weiliao[0]) && avatarOf(weiliao[0]).tagName === 'IMG');
   check('icon preset gets an <img> avatar', imageReady, avatarOf(weiliao[0]) && avatarOf(weiliao[0]).tagName);
-  // 星小彪's asset is not stubbed here, so the probe 404s and the monogram must take over.
-  const monogramReady = await waitFor(() => avatarOf(xing[0]) && avatarOf(xing[0]).tagName === 'SPAN');
-  check('failed avatar falls back to a monogram', monogramReady && avatarOf(xing[0]).textContent === '星', avatarOf(xing[0]) && `${avatarOf(xing[0]).tagName}:${avatarOf(xing[0]).textContent}`);
+  // 海莲's asset is not stubbed here, so the probe 404s and the monogram must take over.
+  const monogramReady = await waitFor(() => avatarOf(hailian[0]) && avatarOf(hailian[0]).tagName === 'SPAN');
+  check('failed avatar falls back to a monogram', monogramReady && avatarOf(hailian[0]).textContent === '海', avatarOf(hailian[0]) && `${avatarOf(hailian[0]).tagName}:${avatarOf(hailian[0]).textContent}`);
 
   check('host inline styles untouched', [...document.querySelectorAll('.settings-section, .cards, .card, .cardMain')].every((el) => el.getAttribute('style') === null));
 
@@ -191,7 +191,7 @@
   const debug = window.__tfPresetBadges || {};
   const rowDump = [...document.querySelectorAll('[data-tf-preset-badges]')].map((row) => `${row.getAttribute('data-tf-preset-badges')}<-${row.parentElement && row.parentElement.tagName}`);
   check('debug hook reports rows', debug.rows >= 3, `${debug.rows} :: ${rowDump.join(' ;; ')}`);
-  // Four surfaces have rows (尉缭 card, 星小彪 card, 墨子 card, the menu item); the
+  // Four surfaces have rows (尉缭 card, 海莲 card, 墨子 card, the menu item); the
   // two seat buttons and the hidden copy must not add any.
   check('debug hook lists missing presets', Array.isArray(debug.missing) && debug.missing.length === 15, debug.missing && debug.missing.length);
 
@@ -220,7 +220,7 @@
     ['诸葛亮 · 隆中调研', '如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。'],
     ['尉缭 · 经世筹策', '把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。'],
     ['张良 · 海贸筹略', '从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。'],
-    ['星小彪 · 跨境电商分析', "只盯跨境电商经营，以 Home Depot、Lowe's 为主：先用 query-canvas 调取自有店铺与商品数据，再上网核实平台、竞品与合规信息，给出能落地的改法。"],
+    ['海莲 · 跨境电商分析', "只盯跨境电商经营，以 Home Depot、Lowe's 为主：先用 query-canvas 调取自有店铺与商品数据，再上网核实平台、竞品与合规信息，给出能落地的改法。"],
     ['鲁班 · 机关营造', '以榫卯之准做桌面应用：先量后削，用契约与实测收口。'],
     ['冯嫽 · 西域通译', '持节通译：先协商能力，再校验入参、审计调用。'],
     ['顾恺之 · 传神写照', '画清界面的每一态：状态、焦点、留白与可访问性。'],

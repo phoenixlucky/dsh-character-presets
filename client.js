@@ -46,7 +46,7 @@ window.__ModuleLoader__.load({
       { name: '诸葛亮 · 隆中调研', tags: ['调研', '行业'], needle: '如隆中推演般层层求证', icon: 'zhuge-liang-market-research' },
       { name: '尉缭 · 经世筹策', tags: ['战略', '落地'], needle: '把目标拆成路径、资源、节点、指标与预案', icon: 'wei-liao-strategy-planning' },
       { name: '张良 · 海贸筹略', tags: ['跨境', '履约'], needle: '从目标市场、平台和选品入手', icon: 'zhang-liang-cross-border-ecommerce' },
-      { name: '星小彪 · 跨境电商分析', tags: ['电商', 'HD/LS'], needle: '只盯跨境电商经营', icon: 'xing-xiaobiao-cross-border-ecommerce' },
+      { name: '海莲 · 跨境电商分析', tags: ['电商', 'HD/LS'], needle: '只盯跨境电商经营', icon: 'hai-lian-cross-border-ecommerce' },
       { name: '鲁班 · 机关营造', tags: ['Rust', 'Tauri', 'IPC'], needle: '以榫卯之准做桌面应用', icon: 'luban-desktop-core' },
       { name: '冯嫽 · 西域通译', tags: ['MCP', 'JSON-RPC', 'Scope'], needle: '持节通译', icon: 'fengliao-mcp' },
       { name: '顾恺之 · 传神写照', tags: ['Vue', 'Pinia', 'A11y'], needle: '画清界面的每一态', icon: 'gu-kaizhi-vue-ui' },

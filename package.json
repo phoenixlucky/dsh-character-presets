@@ -1,6 +1,6 @@
 {
   "name": "@tinyforge/dsh-character-presets",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,6 +11,7 @@
     "url": "https://github.com/phoenixlucky/dsh-character-presets/issues"
   },
   "description": "Character presets with WebP icons and colored badge chips for DeepSeek Harness Web profiles, plus financial, market research, strategy planning, cross-border ecommerce, and software engineering roles (Tauri/Rust, MCP, Vue, security, delivery, observability)",
+  "icon": "icon.webp",
   "type": "module",
   "exports": {
     ".": "./index.js",
@@ -24,6 +25,7 @@
     "LICENSE",
     "README.md",
     "README.zh.md",
+    "icon.webp",
     "index.js",
     "client.js",
     "cordis.patch.yml",
@@ -40,7 +42,7 @@
     "assets/preset-icons/zhuge-liang-market-research.webp",
     "assets/preset-icons/wei-liao-strategy-planning.webp",
     "assets/preset-icons/zhang-liang-cross-border-ecommerce.webp",
-    "assets/preset-icons/xing-xiaobiao-cross-border-ecommerce.webp",
+    "assets/preset-icons/hai-lian-cross-border-ecommerce.webp",
     "assets/preset-icons/luban-desktop-core.webp",
     "assets/preset-icons/fengliao-mcp.webp",
     "assets/preset-icons/gu-kaizhi-vue-ui.webp",

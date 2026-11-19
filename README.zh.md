@@ -52,7 +52,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 | 诸葛亮 · 隆中调研 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/zhuge-liang-market-research.webp" width="64" alt="诸葛亮"/> | 🔭 调研 · 🏭 行业 — 如隆中推演般层层求证，从行业、客户、竞品到趋势拆解市场，并标明判断依据。 |
 | 尉缭 · 经世筹策 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/wei-liao-strategy-planning.webp" width="64" alt="尉缭"/> | 🎯 战略 · ✅ 落地 — 把目标拆成路径、资源、节点、指标与预案，比较代价和风险，形成可执行战略。 |
 | 张良 · 海贸筹略 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/zhang-liang-cross-border-ecommerce.webp" width="64" alt="张良"/> | 🚢 跨境 · 📦 履约 — 从目标市场、平台和选品入手，测算单位经济与履约成本，识别跨境机会和合规风险。 |
-| 星小彪 · 跨境电商分析 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/xing-xiaobiao-cross-border-ecommerce.webp" width="64" alt="星小彪"/> | 🛒 电商 · 🏬 HD/LS — 只盯一件事，以 Home Depot、Lowe's 为主：用 `query-canvas` 调取自家店铺、商品与投放数据，上网核实平台与市场事实，再把差距拆成能落地的改法。 |
+| 海莲 · 跨境电商分析 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/hai-lian-cross-border-ecommerce.webp" width="64" alt="海莲"/> | 🛒 电商 · 🏬 HD/LS — 只盯一件事，以 Home Depot、Lowe's 为主：用 `query-canvas` 调取自家店铺、商品与投放数据，上网核实平台与市场事实，再把差距拆成能落地的改法。 |
 | 鲁班 · 机关营造 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/luban-desktop-core.webp" width="64" alt="鲁班"/> | 🦀 Rust · 💻 Tauri · 🔗 IPC — 以榫卯之准做桌面应用：先量后削，用契约与实测收口。 |
 | 冯嫽 · 西域通译 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/fengliao-mcp.webp" width="64" alt="冯嫽"/> | 🧩 MCP · 📡 JSON-RPC · 🔒 Scope — 持节通译：先协商能力，再校验入参、审计调用。 |
 | 顾恺之 · 传神写照 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/gu-kaizhi-vue-ui.webp" width="64" alt="顾恺之"/> | 🎨 Vue · 🧠 Pinia · ♿ A11y — 画清界面的每一态：状态、焦点、留白与可访问性。 |
@@ -60,7 +60,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 | 黄道婆 · 织造流传 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/huang-daopo-delivery.webp" width="64" alt="黄道婆"/> | 📦 Delivery · 🧾 Sign · 🚀 Rollback — 把交付织成可重复的工序：门禁、构建、签名与分发。 |
 | 王贞仪 · 观象授时 | <img src="https://raw.githubusercontent.com/phoenixlucky/dsh-character-presets/main/assets/preset-icons/wang-zhenyi-observability.webp" width="64" alt="王贞仪"/> | 📈 Metrics · 🧭 Trace · ⚡ Perf — 先测再断：给性能定基线，给告警定口径。 |
 
-每个角色都保留独立的人设风格。上表中的 emoji 是 Client 模块绘制的胶囊标签，不属于 description 文本；描述本身是纯文本，因此同一行不会出现两遍标签。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 `mcp-chrome-super` MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。星小彪通过 `query-canvas` MCP 读取自有经营数据，通过 `mcp-chrome-super` MCP 核实外部信息；未连接时会说明缺哪些数据，不编造数字。
+每个角色都保留独立的人设风格。上表中的 emoji 是 Client 模块绘制的胶囊标签，不属于 description 文本；描述本身是纯文本，因此同一行不会出现两遍标签。调研类角色会使用当前 Agent 可用的浏览器或研究工具。猫娘·金融助理使用 Web profile 已有的 `mcp-chrome-super` MCP 检索市场信息，并使用只读 `new-gold` 工具查询账户持仓；这些连接需在 profile 中另行配置。海莲通过 `query-canvas` MCP 读取自有经营数据，通过 `mcp-chrome-super` MCP 核实外部信息；未连接时会说明缺哪些数据，不编造数字。
 
 编程大师预设不安装语言或构建工具链，按项目现有的 `Cargo.toml`、`package.json` 与 lockfile 工作；提示词中的版本号只作参考基线。
 
@@ -92,6 +92,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
 - 预设行要显式给出插件要求的配置：`@deepseek-ai/dsh-tool-fs-search` 把 `sampleOverCapGlobResults` 声明为必填且无默认值，因此每个预设都写 `sampleOverCapGlobResults: false`。漏掉它会让整个预设挂载失败（`invalid config: $.sampleOverCapGlobResults missing required value`），表现是该预设整体不可用，而不只是少了 `glob` 与 `grep`。
 - `locale/*.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale/*.json`；缺失时会退回显示包名。
+- 插件列表里的图标由 `package.json` 的 `icon` 字段声明：相对路径，支持 SVG、PNG、JPEG 与 WebP，单文件不超过 256 KiB，realpath 后必须仍在包目录内；Harness 启动时会把它内联成 data URL 写进插件元数据。所以 `icon.webp` 要列进 `files`，换图标后需重启 Harness 才会更新。
 - 预设卡片只渲染 name 与 description 两个字段；preset 的配置项只有 `id`、`name`、`description`、`order`、`plugins`。所以 description 里不写任何标记或 emoji 标签，领域标签统一由 `client.js` 的 `PRESETS[].tags` 提供。
 - `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间；输入框预设下拉的每一项里插在名称与描述之间。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
 - 匹配有两条路径：渲染了描述的界面（Agent 预设卡片、预设下拉项）用描述里的一段稳定文字（`PRESETS[].needle`）匹配，行插在该文本之前；只渲染名称的界面用完整可见名称（`PRESETS[].name`）匹配，行插在名称之后。描述优先，所以同时显示名称与描述的卡片仍把行放在两者之间。不依赖任何 CSS 类名。
