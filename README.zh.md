@@ -107,7 +107,7 @@ pnpm dsh plugin --profile web remove @tinyforge/dsh-character-presets
 - `cordis.patch.yml` 使用 `@deepseek-ai/dsh-agent-preset` 注册角色，并配置 persona 与 time-context 指引。
 - 预设行要显式给出插件要求的配置：`@deepseek-ai/dsh-tool-fs-search` 把 `sampleOverCapGlobResults` 声明为必填且无默认值，因此每个预设都写 `sampleOverCapGlobResults: false`。漏掉它会让整个预设挂载失败（`invalid config: $.sampleOverCapGlobResults missing required value`），表现是该预设整体不可用，而不只是少了 `glob` 与 `grep`。
 - `locale/*.json` 提供插件列表中显示的名称与简介。Harness 通过 `./locale/*.json` 导出读取它们，因此需保留该导出与 `files` 中的 `locale/*.json`；缺失时会退回显示包名。
-- 插件列表里的图标由 `package.json` 的 `icon` 字段声明：相对路径，支持 SVG、PNG、JPEG 与 WebP，单文件不超过 256 KiB，realpath 后必须仍在包目录内；Harness 启动时会把它内联成 data URL 写进插件元数据。所以 `icon.webp` 要列进 `files`，换图标后需重启 Harness 才会更新。
+- 插件列表里的图标由 `package.json` 的 `icon` 字段声明：相对路径，支持 SVG、PNG、JPEG 与 WebP，单文件不超过 256 KiB，realpath 后必须仍在包目录内；Harness 会把它内联成 data URL 写进插件元数据，而 `pluginInventory.list()` 每次请求都重新读清单与图标文件，所以换图标后刷新插件页即可，不必重启 Harness；`icon.webp` 仍要列进 `files`。
 - 预设卡片只渲染 name 与 description 两个字段；preset 的配置项只有 `id`、`name`、`description`、`order`、`plugins`。所以 description 里不写任何标记或 emoji 标签，领域标签统一由 `client.js` 的 `PRESETS[].tags` 提供。角色指南表里的「领域标签」一列逐项照抄这些数组，因此改标签只动两处——`PRESETS[].tags` 与该行——不会在 description 里留下第三份。
 - `client.js` 这一 Client 模块为每处预设界面插入一行：头像加若干胶囊标签。预设卡片上插在名称与描述之间；输入框预设下拉的每一项里插在名称与描述之间。`dsh.client` 声明 `platform: web`，`cordis.patch.yml` 末尾的一行 `preset-badges-client` 让 Web app 加载 `./client.js`。
 - 匹配有两条路径：渲染了描述的界面（Agent 预设卡片、预设下拉项）用描述里的一段稳定文字（`PRESETS[].needle`）匹配，行插在该文本之前；只渲染名称的界面用完整可见名称（`PRESETS[].name`）匹配，行插在名称之后。描述优先，所以同时显示名称与描述的卡片仍把行放在两者之间。不依赖任何 CSS 类名。

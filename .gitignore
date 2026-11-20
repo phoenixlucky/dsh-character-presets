@@ -10,3 +10,6 @@ node_modules/
 # Local spec and memory files: per-machine, never published or committed
 AGENTS.md
 MEMORY.md
+
+# Local scratch: asar extraction + icon proofs for host-contract checks
+.icon-work/
